@@ -8,7 +8,7 @@ var stage = new PIXI.Stage(0xFFFFFF);
 // create a renderer instance.
 var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, null, false, true);
 
-window.onresize = function() {
+window.onresize = function () {
     renderer.resize(window.innerWidth, window.innerHeight);
 };
 
@@ -38,29 +38,42 @@ stage.addChild(bunny);
 /* Circle                                                                                                             */
 /**********************************************************************************************************************/
 
+/* Lazy code to test dragging // There are much better methods for dragging (multitouch for example) */
+var pos = {x: 0, y: 0};
+var start;
+
 var circle = new PIXI.Graphics();
 circle.beginFill(0XFF0000);
-circle.drawCircle(300, 300, 100);
+circle.drawCircle(pos.x, pos.y, 100);
 circle.endFill();
+
+circle.setInteractive(true);
+circle.hitArea = new PIXI.Circle(pos.x, pos.y, 100);
+circle.touchstart = function (data) {
+
+    data.originalEvent.preventDefault();
+    this.data = data;
+    this.dragging = true;
+
+};
+
+circle.touchend = circle.touchendoutside = function (data) {
+
+    this.dragging = false;
+    this.data = null;
+
+};
+
+circle.touchmove = function (data) {
+    if (this.dragging) {
+        var pos = this.data.global;
+        this.position.x = pos.x;
+        this.position.y = pos.y;
+        requestAnimFrame(animate);
+    }
+};
+
 stage.addChild(circle);
-
-var circle2 = new PIXI.Graphics();
-circle2.beginFill(0X00FF00);
-circle2.drawCircle(450, 340, 100);
-circle2.endFill();
-stage.addChild(circle2);
-
-var circle3 = new PIXI.Graphics();
-circle3.beginFill(0XFF0000);
-circle3.drawCircle(300, 500, 75);
-circle3.endFill();
-stage.addChild(circle3);
-
-var circle4 = new PIXI.Graphics();
-circle4.beginFill(0X00FF00);
-circle4.drawCircle(150, 440, 75);
-circle4.endFill();
-stage.addChild(circle4);
 
 /**********************************************************************************************************************/
 /* Animate                                                                                                            */
@@ -69,8 +82,6 @@ stage.addChild(circle4);
 requestAnimFrame(animate);
 
 function animate() {
-
-    requestAnimFrame(animate);
 
     // just for fun, lets rotate mr rabbit a little
     bunny.rotation += 0.1;
