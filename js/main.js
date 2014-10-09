@@ -24,11 +24,15 @@ document.body.appendChild(renderer.view);
 /* Circle                                                                                                             */
 /**********************************************************************************************************************/
 
+var updateObjects = [];
+
 var red = new Circle(350, 350, 100, 0XBE1B1B);
 stage.addChild(red.getCircle());
+updateObjects.push(red);
 
 var green = new Circle(700, 700, 100, 0X299C23);
 stage.addChild(green.getCircle());
+updateObjects.push(green);
 
 /**********************************************************************************************************************/
 /* Animate                                                                                                            */
@@ -37,6 +41,12 @@ stage.addChild(green.getCircle());
 requestAnimFrame(animate);
 
 function animate() {
+    // update
+    updateObjects.forEach(function (el) {
+        el.update();
+    });
     // render the stage
     renderer.render(stage);
+    // request new frame
+    requestAnimFrame(animate);
 }
