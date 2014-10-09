@@ -2,22 +2,41 @@
  * Created by René on 9-10-2014.
  */
 
-Circle = function(x, y, radius) {
-
-    this.pos = {x: x, y: y};
+Circle = function (x, y, radius) {
     this.radius = radius;
 
     this.circle = new PIXI.Graphics();
     this.circle.beginFill(0XFF0000);
-    this.circle.drawCircle(this.pos.x, this.pos.y, this.radius);
+    this.circle.drawCircle(0, 0, this.radius);
     this.circle.endFill();
 
     this.circle.setInteractive(true);
-    this.circle.hitArea = new PIXI.Circle(this.pos.x, this.pos.y, this.radius);
+    this.circle.hitArea = new PIXI.Circle(0, 0, this.radius);
+
+    this.circle.position = {x: x, y: y};
+
+    this.circle.touchstart = function (data) {
+        this.start = data.getLocalPosition(this);
+    }
+
+    this.circle.touchend = this.circle.touchendoutside = function (data) {
+        this.start = null;
+    }
+
+    this.circle.touchmove = function (data) {
+        if(this.start) {
+            var end = data.getLocalPosition(this.parent);
+            this.position = {
+                x: end.x - this.start.x,
+                y: end.y - this.start.y
+            };
+            requestAnimFrame(animate);
+        }
+    }
 
 };
 
-Circle.prototype.getCircle = function() {
+Circle.prototype.getCircle = function () {
 
     return this.circle;
 

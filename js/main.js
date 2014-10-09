@@ -2,6 +2,10 @@
  * Created by René on 8-10-2014.
  */
 
+/**********************************************************************************************************************/
+/* Init                                                                                                              */
+/**********************************************************************************************************************/
+
 // create an new instance of a pixi stage
 var stage = new PIXI.Stage(0xFFFFFF);
 
@@ -48,8 +52,6 @@ stage.addChild(circle.getCircle());
 requestAnimFrame(animate);
 
 function animate() {
-
-    requestAnimFrame(animate);
 
     // just for fun, lets rotate mr rabbit a little
     bunny.rotation += 0.1;
