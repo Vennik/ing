@@ -20,30 +20,14 @@ window.onresize = function () {
 document.body.appendChild(renderer.view);
 
 /**********************************************************************************************************************/
-/* Bunny                                                                                                              */
-/**********************************************************************************************************************/
-
-// create a texture from an image path
-var texture = PIXI.Texture.fromImage("images/bunny.png");
-// create a new Sprite using the texture
-var bunny = new PIXI.Sprite(texture);
-
-// center the sprites anchor point
-bunny.anchor.x = 0.5;
-bunny.anchor.y = 0.5;
-
-// move the sprite t the center of the screen
-bunny.position.x = 200;
-bunny.position.y = 150;
-
-stage.addChild(bunny);
-
-/**********************************************************************************************************************/
 /* Circle                                                                                                             */
 /**********************************************************************************************************************/
 
-var circle = new Circle(350, 350, 100);
-stage.addChild(circle.getCircle());
+var red = new Circle(350, 350, 100, 0XFF0000);
+stage.addChild(red.getCircle());
+
+var green = new Circle(700, 700, 100, 0X00FF00);
+stage.addChild(green.getCircle());
 
 /**********************************************************************************************************************/
 /* Animate                                                                                                            */
@@ -52,9 +36,6 @@ stage.addChild(circle.getCircle());
 requestAnimFrame(animate);
 
 function animate() {
-
-    // just for fun, lets rotate mr rabbit a little
-    bunny.rotation += 0.1;
 
     // render the stage
     renderer.render(stage);

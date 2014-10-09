@@ -2,11 +2,11 @@
  * Created by René on 9-10-2014.
  */
 
-Circle = function (x, y, radius) {
+Circle = function (x, y, radius, color) {
     this.radius = radius;
 
     this.circle = new PIXI.Graphics();
-    this.circle.beginFill(0XFF0000);
+    this.circle.beginFill(color);
     this.circle.drawCircle(0, 0, this.radius);
     this.circle.endFill();
 
