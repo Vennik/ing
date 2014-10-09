@@ -14,6 +14,7 @@ var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, nu
 
 window.onresize = function () {
     renderer.resize(window.innerWidth, window.innerHeight);
+    requestAnimFrame(animate);
 };
 
 // add the renderer view element to the DOM
