@@ -15,17 +15,17 @@ Circle = function (x, y, radius, color) {
 
     this.circle.position = {x: x, y: y};
 
-    this.circle.touchstart = function (data) {
+    this.circle.mousedown = this.circle.touchstart = function (data) {
         data.originalEvent.preventDefault();
         this.start = data.getLocalPosition(this);
     };
 
-    this.circle.touchend = this.circle.touchendoutside = function (data) {
+    this.circle.mouseup = this.circle.mouseupoutside = this.circle.touchend = this.circle.touchendoutside = function (data) {
         data.originalEvent.preventDefault();
         this.start = null;
     };
 
-    this.circle.touchmove = function (data) {
+    this.circle.mousemove = this.circle.touchmove = function (data) {
         data.originalEvent.preventDefault();
         if (this.start) {
             var end = data.getLocalPosition(this.parent);
