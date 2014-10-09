@@ -2,3 +2,14 @@ ING
 ===
 
 HTML5 WebGL application
+
+Installation
+------------
+
+You'll have to install `node`, `npm`, `grunt` and `bower`.
+
+Run `npm install` from the commandline.
+
+Run `grunt` from the commandline.
+
+Use `grunt watch` to automatically update files. Use a livereload client to automatically refresh the browser.
