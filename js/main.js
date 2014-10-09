@@ -38,42 +38,8 @@ stage.addChild(bunny);
 /* Circle                                                                                                             */
 /**********************************************************************************************************************/
 
-/* Lazy code to test dragging // There are much better methods for dragging (multitouch for example) */
-var pos = {x: 0, y: 0};
-var start;
-
-var circle = new PIXI.Graphics();
-circle.beginFill(0XFF0000);
-circle.drawCircle(pos.x, pos.y, 100);
-circle.endFill();
-
-circle.setInteractive(true);
-circle.hitArea = new PIXI.Circle(pos.x, pos.y, 100);
-circle.touchstart = function (data) {
-
-    data.originalEvent.preventDefault();
-    this.data = data;
-    this.dragging = true;
-
-};
-
-circle.touchend = circle.touchendoutside = function (data) {
-
-    this.dragging = false;
-    this.data = null;
-
-};
-
-circle.touchmove = function (data) {
-    if (this.dragging) {
-        var pos = this.data.global;
-        this.position.x = pos.x;
-        this.position.y = pos.y;
-        requestAnimFrame(animate);
-    }
-};
-
-stage.addChild(circle);
+var circle = new Circle(350, 350, 100);
+stage.addChild(circle.getCircle());
 
 /**********************************************************************************************************************/
 /* Animate                                                                                                            */
@@ -82,6 +48,8 @@ stage.addChild(circle);
 requestAnimFrame(animate);
 
 function animate() {
+
+    requestAnimFrame(animate);
 
     // just for fun, lets rotate mr rabbit a little
     bunny.rotation += 0.1;
