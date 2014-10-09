@@ -27,10 +27,9 @@ Circle = function (x, y, radius, color) {
 
     this.circle.touchmove = function (data) {
         data.originalEvent.preventDefault();
-        console.log(data);
         if (this.start) {
             var end = data.getLocalPosition(this.parent);
-            this.newPosition = {
+            this.position = {
                 x: end.x - this.start.x,
                 y: end.y - this.start.y
             };
@@ -38,12 +37,6 @@ Circle = function (x, y, radius, color) {
         }
     };
 
-};
-
-Circle.prototype.update = function () {
-    if (this.circle.newPosition) {
-        this.circle.position = this.circle.newPosition;
-    }
 };
 
 Circle.prototype.getCircle = function () {
