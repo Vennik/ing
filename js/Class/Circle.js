@@ -16,14 +16,18 @@ Circle = function (x, y, radius, color) {
     this.circle.position = {x: x, y: y};
 
     this.circle.touchstart = function (data) {
+        data.originalEvent.preventDefault();
         this.start = data.getLocalPosition(this);
     };
 
     this.circle.touchend = this.circle.touchendoutside = function (data) {
+        data.originalEvent.preventDefault();
         this.start = null;
     };
 
     this.circle.touchmove = function (data) {
+        data.originalEvent.preventDefault();
+        console.log(data);
         if (this.start) {
             var end = data.getLocalPosition(this.parent);
             this.newPosition = {
