@@ -17,11 +17,11 @@ Circle = function (x, y, radius, color) {
 
     this.circle.touchstart = function (data) {
         this.start = data.getLocalPosition(this);
-    }
+    };
 
     this.circle.touchend = this.circle.touchendoutside = function (data) {
         this.start = null;
-    }
+    };
 
     this.circle.touchmove = function (data) {
         if(this.start) {
@@ -32,7 +32,7 @@ Circle = function (x, y, radius, color) {
             };
             requestAnimFrame(animate);
         }
-    }
+    };
 
 };
 

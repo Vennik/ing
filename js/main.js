@@ -36,8 +36,6 @@ stage.addChild(green.getCircle());
 requestAnimFrame(animate);
 
 function animate() {
-
     // render the stage
     renderer.render(stage);
-
 }
