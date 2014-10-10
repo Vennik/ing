@@ -11,7 +11,7 @@ Circle = function (x, y, radius, color) {
     this.circle.drawCircle(0, 0, radius);
     this.circle.endFill();
 
-    this.circle.setInteractive(true);
+    this.circle.interactive = true;
     this.circle.hitArea = new PIXI.Circle(0, 0, radius);
 
     this.circle.position = {x: x, y: y};
@@ -31,11 +31,9 @@ Circle = function (x, y, radius, color) {
 };
 
 Circle.prototype.update = function () {
-
     while (this.eventQueue.hasEvent()) {
         (this.eventQueue.remove())();
     }
-
 };
 
 Circle.prototype.touchStart = function (data) {
