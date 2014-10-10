@@ -4,6 +4,5 @@
   "dependencies": {
     "requirejs": "~2.1.5",
     "pixi": "https://raw.githubusercontent.com/GoodBoyDigital/pixi.js/master/bin/pixi.js",
-    "stats.min": "https://raw.githubusercontent.com/mrdoob/stats.js/master/build/stats.min.js"
   }
 }

@@ -1,5 +1,6 @@
 define [
-], () ->
+  'event'
+], (event) ->
   class Circle extends PIXI.Graphics
     constructor: (x, y, @radius, color) ->
       super()
@@ -7,7 +8,7 @@ define [
       @drawCircle(0, 0, @radius)
       @endFill()
 
-      @setInteractive true
+      @interactive = true
       @hitArea = new PIXI.Circle(0, 0, @radius)
       @position =
         x: x
@@ -29,4 +30,4 @@ define [
             x: end.x - @start.x
             y: end.y - @start.y
 
-          #requestAnimationFrame this
+          event.render()
