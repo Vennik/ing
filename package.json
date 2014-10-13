@@ -1,0 +1,16 @@
+{
+  "name": "ing",
+  "version": "0.0.1",
+  "repository": "https://github.com/Vennik/ing",
+  "devDependencies": {
+    "time-grunt": "latest",
+    "load-grunt-tasks": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-newer": "^0.7.0"
+  },
+  "scripts": {
+    "install": "bower install"
+  }
+}

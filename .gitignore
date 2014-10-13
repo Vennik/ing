@@ -1,3 +1,12 @@
 # IntelliJ IDEA project files
 .idea
 *.iml
+
+# Temporary compiled CoffeeScript
+.tmp
+
+# NPM stuff
+node_modules
+
+# Bower stuff
+lib
