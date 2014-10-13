@@ -3,14 +3,12 @@ define [
   'object/EventQueue'
 ], (event, EventQueue) ->
   class Circle extends PIXI.Graphics
-    constructor: (x, y, @radius, color) ->
+    constructor: (x, y, @radius, @color) ->
       super()
-      @beginFill(color);
-      @drawCircle(0, 0, @radius)
-      @endFill()
+      @draw()
 
       @interactive = true
-      @hitArea = new PIXI.Circle(0, 0, @radius)
+
       @position =
         x: x
         y: y
@@ -33,8 +31,21 @@ define [
 
           event.render()
 
-      window.addEventListener "scroll", (evt) =>
-        console.log "scrolling"
+      window.addEventListener "mousewheel", (evt) =>
         if @start
-          if evt.direction is 1
-            this.size += 1
+          delta = 50
+          evt.preventDefault()
+          if evt.ctrlKey
+            delta = 100
+          if 300 > @radius + evt.wheelDelta/delta > 20
+            @radius += evt.wheelDelta/delta
+          @draw()
+          event.render()
+
+    draw: ->
+      @clear()
+      @beginFill(@color);
+      @drawCircle(0, 0, @radius)
+      @endFill()
+
+      @hitArea = new PIXI.Circle(0, 0, @radius)
