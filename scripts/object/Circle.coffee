@@ -3,8 +3,9 @@ define [
   'object/EventQueue'
 ], (event, EventQueue) ->
   class Circle extends PIXI.Graphics
-    constructor: (x, y, @radius, @color) ->
+    constructor: (x, y, @radius, color) ->
       super()
+      @color = color
       @draw()
 
       @interactive = true
@@ -37,6 +38,7 @@ define [
           evt.preventDefault()
           if evt.ctrlKey
             delta = 100
+            
           if 300 > @radius + evt.wheelDelta/delta > 20
             @radius += evt.wheelDelta/delta
           @draw()
@@ -44,7 +46,7 @@ define [
 
     draw: ->
       @clear()
-      @beginFill(@color);
+      @beginFill(@color)
       @drawCircle(0, 0, @radius)
       @endFill()
 
