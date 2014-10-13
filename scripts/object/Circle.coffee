@@ -1,6 +1,7 @@
 define [
   'event'
-], (event) ->
+  'EventQueue'
+], (event, EventQueue) ->
   class Circle extends PIXI.Graphics
     constructor: (x, y, @radius, color) ->
       super()
@@ -12,11 +13,12 @@ define [
       @hitArea = new PIXI.Circle(0, 0, @radius)
       @position =
         x: x
-        y: y
+        y:
 
-      @mousedown = @touchstart = (data) ->
-        data.originalEvent.preventDefault()
-        @start = data.getLocalPosition this
+      @eventqueue = new EventQueue()
+
+      @mousedown = @touchstart = =>
+        @eventqueue.insert(@start, this, data)
 
       @mouseup = @mouseupoutside = @touchend = @touchendoutside = (data) ->
         data.originalEvent.preventDefault()
@@ -31,3 +33,21 @@ define [
             y: end.y - @start.y
 
           event.render()
+
+    end: (data) ->
+      data.originalEvent.preventDefault()
+      @start = null
+
+    start: (data) ->
+      data.originalEvent.preventDefault()
+      @start = data.getLocalPosition this
+
+    move: (data) ->
+      data.originalEvent.preventDefault()
+      if @start
+        end = data.getLocalPosition @parent
+        @position =
+          x: end.x - @start.x
+          y: end.y - @start.y
+
+        event.render()
