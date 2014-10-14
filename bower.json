@@ -3,6 +3,6 @@
   "private": true,
   "dependencies": {
     "requirejs": "~2.1.5",
-    "pixi": "https://raw.githubusercontent.com/GoodBoyDigital/pixi.js/master/bin/pixi.js",
+    "pixi": "https://raw.githubusercontent.com/GoodBoyDigital/pixi.js/master/bin/pixi.js"
   }
 }
