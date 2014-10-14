@@ -1,7 +1,6 @@
 define [
   'event'
-  'object/EventQueue'
-], (event, EventQueue) ->
+], (event) ->
   class Circle extends PIXI.Graphics
     constructor: (x, y, @radius, color) ->
       super()
