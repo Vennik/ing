@@ -38,7 +38,7 @@ define [
           evt.preventDefault()
           if evt.ctrlKey
             delta = 100
-            
+
           if 300 > @radius + evt.wheelDelta/delta > 20
             @radius += evt.wheelDelta/delta
           @draw()

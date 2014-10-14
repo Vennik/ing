@@ -1,6 +1,4 @@
-define [
-
-], () ->
+define ->
     RENDEREVENT: 'render'
     render: () ->
       document.dispatchEvent(new Event(@RENDEREVENT))

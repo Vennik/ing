@@ -5,6 +5,7 @@
   "devDependencies": {
     "time-grunt": "latest",
     "load-grunt-tasks": "latest",
+    "grunt": "latest",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-coffee": "latest",
