@@ -2,8 +2,7 @@ define [
   'Stage',
   'object/RedCircle',
   'object/GreenCircle'
-  'Element'
-], (Stage, RedCircle, GreenCircle, Element) ->
+], (Stage, RedCircle, GreenCircle) ->
 
   stage = new Stage()
 
