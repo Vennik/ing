@@ -1,37 +1,16 @@
 define [
-  'object/Circle'
-  'event'
-], (Circle, event) ->
+  'object/RedCircle',
+  'object/GreenCircle'
+], (RedCircle, GreenCircle) ->
 
-  stage = new PIXI.Stage 0xFFFFFF
-
-  renderer = PIXI.autoDetectRenderer window.innerWidth, window.innerHeight, null, false, true
-
-  animate = () ->
-    #render the stage
-    renderer.render(stage)
-
-  window.onresize = () ->
-    renderer.resize window.innerWidth, window.innerHeight
-    requestAnimFrame animate
-
-  document.body.appendChild renderer.view
+  stage = document.getElementById "main"
 
   #/**********************************************************************************************************************/
   #/* Circle                                                                                                             */
   #/**********************************************************************************************************************/
 
-  red = new Circle 350, 350, 100, 0xBE1B1B
-  stage.addChild red
+  red = new RedCircle 350, 350, 100
+  stage.appendChild red.circle
 
-  green = new Circle 700, 700, 100, 0x299C23
-  stage.addChild green
-
-  event.listen document, ->
-    requestAnimFrame animate
-
-  #/**********************************************************************************************************************/
-  #/* Animate                                                                                                            */
-  #/**********************************************************************************************************************/
-
-  requestAnimFrame animate
+  green = new GreenCircle 500, 500, 100
+  stage.appendChild green.circle

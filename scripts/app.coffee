@@ -3,6 +3,4 @@ require.config
   paths:
     "lib": "../lib"
 
-
-
 require ['main']
