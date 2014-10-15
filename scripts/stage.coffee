@@ -1,17 +1,18 @@
-define [], () ->
-  class Stage
+define [
+  'object/Element'
+], (Element) ->
+  class Stage extends Element
     constructor: (@id) ->
-      @objects = [];
-      @stage = $ "body"
+      super('body')
+      @objects = []
 
       @initEvents()
 
     add: (object) ->
       @objects.push object
-      @stage.append(object.element);
+      @append(object.element);
 
     initEvents: ->
-      @stage
-      .hammer()
+      @hammer()
       .on "pan", (e) ->
         e.preventDefault()
