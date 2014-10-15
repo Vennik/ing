@@ -8,3 +8,25 @@ define [], () ->
       @element.css
         left: @x
         top: @y
+
+      @initEvents()
+
+    setPosition: (x, y) ->
+      @element.css
+        left: @x = x
+        top: @y = y
+
+    initEvents: ->
+      @element
+      .on "mousedown", (e) =>
+        e.preventDefault()
+        @start = e
+
+      $(document)
+      .on "mouseup", (e) =>
+        @start = null
+      .on "mousemove", (e) =>
+        e.preventDefault()
+        if @start
+          @setPosition @x + e.pageX - @start.pageX, @y + e.pageY - @start.pageY
+          @start = e;
