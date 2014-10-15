@@ -5,9 +5,7 @@ define [], () ->
       @element.addClass "circle"
       @element.width @radius * 2
       @element.height @radius * 2
-      @element.css
-        left: @x
-        top: @y
+      @setPosition @x, @y
 
       @initEvents()
 
