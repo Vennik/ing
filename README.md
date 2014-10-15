@@ -6,7 +6,7 @@ HTML5 WebGL application
 Installation
 ------------
 
-You'll have to install `node`, `npm`, `grunt` and `bower`.
+You'll have to install `node`, `npm`, `grunt`, `bower` and `less`.
 
 Run `npm install` from the commandline.
 
