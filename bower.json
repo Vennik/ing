@@ -1,7 +1,8 @@
 {
-  "name": "ing",
-  "private": true,
-  "dependencies": {
-    "requirejs": "~2.1.5"
-  }
+    "name": "ing",
+    "private": true,
+    "dependencies": {
+        "jquery": "~2.1.1",
+        "requirejs": "~2.1.5"
+    }
 }
