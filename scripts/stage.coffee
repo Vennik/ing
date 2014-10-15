@@ -6,13 +6,10 @@ define [
       super('body')
       @objects = []
 
-      @initEvents()
-
-    add: (object) ->
-      @objects.push object
-      @append(object.element);
-
-    initEvents: ->
       @hammer()
       .on "pan", (e) ->
         e.preventDefault()
+
+    append: (object) ->
+      super(object)
+      @objects.push object

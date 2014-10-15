@@ -11,14 +11,6 @@ define [
       @height @radius * 2
       @setPosition @x, @y
 
-      @initEvents()
-
-    setPosition: (x, y) ->
-      @css
-        left: @x = x
-        top: @y = y
-
-    initEvents: ->
       @hammer()
       .on "panstart", (e) =>
         e.preventDefault()
@@ -31,3 +23,8 @@ define [
         if @start
           @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
           @start = e
+
+    setPosition: (x, y) ->
+      @css
+        left: @x = x
+        top: @y = y
