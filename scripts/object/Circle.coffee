@@ -1,22 +1,25 @@
-define [], () ->
-  class Circle
+define [
+  'object/Div'
+], (Div) ->
+
+  class Circle extends Div
     constructor: (@x, @y, @radius) ->
-      @element = $ document.createElement "div"
-      @element.addClass "circle"
-      @element.width @radius * 2
-      @element.height @radius * 2
+      super()
+
+      @addClass "circle"
+      @width @radius * 2
+      @height @radius * 2
       @setPosition @x, @y
 
       @initEvents()
 
     setPosition: (x, y) ->
-      @element.css
+      @css
         left: @x = x
         top: @y = y
 
     initEvents: ->
-      @element
-      .hammer()
+      @hammer()
       .on "panstart", (e) =>
         e.preventDefault()
         @start = e
@@ -27,4 +30,4 @@ define [], () ->
         e.preventDefault()
         if @start
           @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
-          @start = e;
+          @start = e
