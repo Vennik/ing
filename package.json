@@ -9,7 +9,8 @@
     "grunt-contrib-clean": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-coffee": "latest",
-    "grunt-newer": "^0.7.0"
+    "grunt-newer": "^0.7.0",
+    "grunt-contrib-less": "0.11.4"
   },
   "scripts": {
     "install": "bower install"
