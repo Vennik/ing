@@ -1,10 +1,10 @@
 define [], () ->
   class Circle
     constructor: (@x, @y, @radius) ->
-      @circle = $ document.createElement "div"
-      @circle.addClass "circle"
-      @circle.width @radius * 2
-      @circle.height @radius * 2
-      @circle.css
+      @element = $ document.createElement "div"
+      @element.addClass "circle"
+      @element.width @radius * 2
+      @element.height @radius * 2
+      @element.css
         left: @x
         top: @y
