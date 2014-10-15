@@ -1,5 +1,5 @@
 define [
-  'object/Element'
+  'Element'
 ], (Element) ->
   class Stage extends Element
     constructor: (@id) ->
