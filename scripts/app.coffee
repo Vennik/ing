@@ -4,4 +4,4 @@ require.config
     "lib": "../lib"
     "jquery": "../lib/jquery/dist/jquery.min"
 
-require ['main', 'object/Element']
+require ['main', 'Element']
