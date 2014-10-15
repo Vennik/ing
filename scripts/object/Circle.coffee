@@ -36,7 +36,7 @@ define [
           delta = 50
           evt.preventDefault()
           if evt.ctrlKey
-            delta = 100
+            delta = 25
 
           if 300 > @radius + evt.wheelDelta/delta > 20
             @radius += evt.wheelDelta/delta
@@ -45,8 +45,8 @@ define [
 
     draw: ->
       @clear()
-      @beginFill(@color)
-      @drawCircle(0, 0, @radius)
+      @beginFill @color
+      @drawCircle 0, 0, @radius
       @endFill()
 
-      @hitArea = new PIXI.Circle(0, 0, @radius)
+      @hitArea = new PIXI.Circle 0, 0, @radius
