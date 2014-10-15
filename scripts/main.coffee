@@ -3,7 +3,7 @@ define [
   'event'
 ], (Circle, event) ->
 
-  stage = new PIXI.Stage(0xFFFFFF)
+  stage = new PIXI.Stage 0xFFFFFF
 
   renderer = PIXI.autoDetectRenderer window.innerWidth, window.innerHeight, null, false, true
 
@@ -21,11 +21,11 @@ define [
   #/* Circle                                                                                                             */
   #/**********************************************************************************************************************/
 
-  red = new Circle(350, 350, 100, 0xBE1B1B);
-  stage.addChild(red);
+  red = new Circle 350, 350, 100, 0xBE1B1B
+  stage.addChild red
 
-  green = new Circle(700, 700, 100, 0x299C23);
-  stage.addChild(green);
+  green = new Circle 700, 700, 100, 0x299C23
+  stage.addChild green
 
   event.listen document, ->
     requestAnimFrame animate
@@ -34,4 +34,4 @@ define [
   #/* Animate                                                                                                            */
   #/**********************************************************************************************************************/
 
-  requestAnimFrame(animate)
+  requestAnimFrame animate
