@@ -17,15 +17,15 @@ define [], () ->
         top: @y = y
 
     initEvents: ->
-      $(@element[0])
+      @element
       .hammer()
-      .bind "panstart", (e) =>
+      .on "panstart", (e) =>
         e.preventDefault()
         @start = e
-      .bind "panend", (e) =>
+      .on "panend", (e) =>
         e.preventDefault()
         @start = null;
-      .bind "pan", (e) =>
+      .on "pan", (e) =>
         e.preventDefault()
         if @start
           @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
