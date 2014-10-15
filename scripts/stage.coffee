@@ -2,8 +2,7 @@ define [], () ->
   class Stage
     constructor: (@id) ->
       @objects = [];
-      @stage = $ document.createElement "div"
-      $("body").prepend @stage
+      @stage = $ "body"
 
     add: (object) ->
       @objects.push object

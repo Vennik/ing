@@ -17,24 +17,16 @@ define [], () ->
         top: @y = y
 
     initEvents: ->
-      # Mouse events
-      @element
-      .on "mousedown", (e) =>
+      $(@element[0])
+      .hammer()
+      .bind "panstart", (e) =>
         e.preventDefault()
         @start = e
-
-      $(document)
-      .on "mouseup", (e) =>
-        @start = null
-      .on "mousemove", (e) =>
+      .bind "panend", (e) =>
+        e.preventDefault()
+        @start = null;
+      .bind "pan", (e) =>
         e.preventDefault()
         if @start
-          @setPosition @x + e.pageX - @start.pageX, @y + e.pageY - @start.pageY
+          @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
           @start = e;
-
-      # Touch events
-      hammertime = new Hammer(@element[0], {});
-      hammertime.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
-      hammertime
-      .on "swipe", (e) ->
-        console.log e
