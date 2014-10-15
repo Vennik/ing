@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = ( grunt ) ->
+module.exports = (grunt) ->
   require('time-grunt')(grunt)
   require('load-grunt-tasks')(grunt)
 
@@ -27,6 +27,15 @@ module.exports = ( grunt ) ->
           ext: '.js'
         ]
 
+    less: {
+      options: {
+        paths: ["css"],
+        files: {
+          "style.css": "style.less"
+        }
+      }
+    }
+
     watch:
       options:
         livereload: true
@@ -35,6 +44,10 @@ module.exports = ( grunt ) ->
       coffee:
         files: ['<%= config.scripts %>/**/*.coffee']
         tasks: ['newer:coffee:dev']
+
+      less:
+        files: ["css/style.less"]
+        tasks: ['newer:less']
 
   grunt.registerTask 'default', [
     "clean:dev"

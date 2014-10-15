@@ -1,0 +1,30 @@
+@red: #be1b1b;
+@green: #299c23;
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body, html, #main{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+#main{
+    float: left;
+}
+
+.circle{
+    position: absolute;
+    background: #000;
+    border-radius: 50%;
+  &.red{
+    background: @red;
+  }
+  &.green{
+    background: @green;
+  }
+}

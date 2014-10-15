@@ -1,52 +1,9 @@
-define [
-  'event'
-], (event) ->
-  class Circle extends PIXI.Graphics
-    constructor: (x, y, @radius, color) ->
-      super()
-      @color = color
-      @draw()
-
-      @interactive = true
-
-      @position =
-        x: x
-        y: y
-
-      @mousedown = @touchstart = (data) =>
-        data.originalEvent.preventDefault()
-        @start = data.getLocalPosition this
-
-      @mouseup = @mouseupoutside = @touchend = @touchendoutside = (data) =>
-        data.originalEvent.preventDefault()
-        @start = null
-
-      @mousemove = @touchmove = (data) =>
-        data.originalEvent.preventDefault()
-        if @start
-          end = data.getLocalPosition @parent
-          @position =
-            x: end.x - @start.x
-            y: end.y - @start.y
-
-          event.render()
-
-      window.addEventListener "mousewheel", (evt) =>
-        if @start
-          delta = 50
-          evt.preventDefault()
-          if evt.ctrlKey
-            delta = 25
-
-          if 300 > @radius + evt.wheelDelta/delta > 20
-            @radius += evt.wheelDelta/delta
-          @draw()
-          event.render()
-
-    draw: ->
-      @clear()
-      @beginFill @color
-      @drawCircle 0, 0, @radius
-      @endFill()
-
-      @hitArea = new PIXI.Circle 0, 0, @radius
+define [], () ->
+  class Circle
+    constructor: (@x, @y, @radius) ->
+      @circle = document.createElement "div";
+      @circle.className = "circle";
+      @circle.style.width = (@radius * 2) + "px"
+      @circle.style.height = (@radius * 2) + "px"
+      @circle.style.left = @x + "px"
+      @circle.style.top = @y + "px"
