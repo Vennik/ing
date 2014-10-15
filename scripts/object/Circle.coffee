@@ -17,6 +17,7 @@ define [], () ->
         top: @y = y
 
     initEvents: ->
+      # Mouse events
       @element
       .on "mousedown", (e) =>
         e.preventDefault()
@@ -30,3 +31,10 @@ define [], () ->
         if @start
           @setPosition @x + e.pageX - @start.pageX, @y + e.pageY - @start.pageY
           @start = e;
+
+      # Touch events
+      hammertime = new Hammer(@element[0], {});
+      hammertime.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
+      hammertime
+      .on "swipe", (e) ->
+        console.log e
