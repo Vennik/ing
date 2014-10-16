@@ -8,7 +8,7 @@ define [
 
       @hammer
         preventDefault: true
-      .on "pan", (e) ->
+      .on "pan", (e) =>
 
     append: (object) ->
       super object
