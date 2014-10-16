@@ -11,15 +11,13 @@ define [
       @height @radius * 2
       @setPosition @x, @y
 
-      @hammer()
+      @hammer
+        preventDefault: true
       .on "panstart", (e) =>
-        e.preventDefault()
         @start = e
       .on "panend", (e) =>
-        e.preventDefault()
         @start = null;
       .on "pan", (e) =>
-        e.preventDefault()
         if @start
           @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
           @start = e

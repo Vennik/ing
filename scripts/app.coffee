@@ -6,4 +6,4 @@ require.config
     "hammerjs": "../lib/hammerjs/hammer"
     "jquery-hammerjs": "../lib/jquery-hammerjs/jquery.hammer"
 
-require ['main', 'Element', 'jquery-hammerjs']
+require ['main', 'object/Element', 'jquery-hammerjs']

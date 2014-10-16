@@ -1,5 +1,5 @@
 define [
-  'Stage',
+  'object/Stage',
   'object/RedCircle',
   'object/GreenCircle'
 ], (Stage, RedCircle, GreenCircle) ->

@@ -1,6 +1,6 @@
 define [
-  'Element'
+  'object/Element'
 ], (Element) ->
   class Div extends Element
     constructor: ->
-      super("<div>")
+      super document.createElement "div"
