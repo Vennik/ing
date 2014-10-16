@@ -3,13 +3,12 @@ define [
 ], (Div) ->
 
   class Circle extends Div
-    constructor: (@x, @y, @radius) ->
+    constructor: (x, y, radius) ->
       super()
 
       @addClass "circle"
-      @width @radius * 2
-      @height @radius * 2
-      @setPosition @x, @y
+      @setRadius radius
+      @setPosition x, y
 
       @hammer
         preventDefault: true
@@ -21,6 +20,11 @@ define [
         if @start
           @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
           @start = e
+
+    setRadius: (radius) ->
+      @radius = radius
+      @width @radius * 2
+      @height @radius * 2
 
     setPosition: (x, y) ->
       @css
