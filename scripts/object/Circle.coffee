@@ -13,13 +13,28 @@ define [
       @hammer
         preventDefault: true
       .on "panstart", (e) =>
-        @start = e
+        @panstart = e
       .on "panend", (e) =>
-        @start = null;
-      .on "pan", (e) =>
-        if @start
-          @setPosition @x + e.gesture.deltaX - @start.gesture.deltaX, @y + e.gesture.deltaY - @start.gesture.deltaY
-          @start = e
+        @panstart = null;
+      .on "panmove", (e) =>
+        if @panstart
+          @setPosition @x + e.gesture.deltaX - @panstart.gesture.deltaX, @y + e.gesture.deltaY - @panstart.gesture.deltaY
+          @panstart = e
+      .on "pinchstart", (e) =>
+        @pinchstart = e
+      .on "pinchend", (e) =>
+        @pinchstart = null;
+      .on "pinchmove", (e) =>
+        if @pinchstart
+          @setRadius @radius * e.gesture.scale / @pinchstart.gesture.scale
+          @setPosition @x + e.gesture.deltaX - @pinchstart.gesture.deltaX, @y + e.gesture.deltaY - @pinchstart.gesture.deltaY
+          @pinchstart = e
+
+      # Enable pinch
+      @data "hammer"
+      .get "pinch"
+      .set
+        enable: true
 
     setRadius: (radius) ->
       @radius = radius
