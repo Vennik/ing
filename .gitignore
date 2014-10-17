@@ -2,8 +2,8 @@
 .idea
 *.iml
 
-# Temporary compiled CoffeeScript
-.tmp
+# Temporary compiled scripts
+dist
 
 # NPM stuff
 node_modules

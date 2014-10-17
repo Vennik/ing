@@ -8,7 +8,7 @@ module.exports = (grunt) ->
     config:
       scripts: "scripts"
       styles: "styles"
-      tmp: ".tmp"
+      tmp: "dist"
 
     clean:
       dev: [

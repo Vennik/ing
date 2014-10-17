@@ -1,5 +1,5 @@
 require.config
-  baseUrl: ".tmp/scripts"
+  baseUrl: "dist/scripts"
   paths:
     "lib": "../../lib"
     "jquery": "../../lib/jquery/dist/jquery.min"
