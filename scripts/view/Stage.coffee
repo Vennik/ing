@@ -1,5 +1,5 @@
 define [
-  '../../.tmp/scripts/object/Div'
+  'object/Div'
 ], (Div) ->
   class Visual extends Div
     constructor: () ->

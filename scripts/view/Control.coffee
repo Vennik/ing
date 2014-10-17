@@ -1,5 +1,5 @@
 define [
-  '../../.tmp/scripts/object/Div'
+  'object/Div'
   'object/Image'
   'object/Element'
   'object/ButtonGroup'
