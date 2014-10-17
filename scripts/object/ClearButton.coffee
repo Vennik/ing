@@ -6,4 +6,4 @@ define [
       super value
 
       @click () =>
-        @visual.find("> .circle").remove()
+        @visual.empty()
