@@ -1,5 +1,8 @@
 define [
-  'object/Stage'
-], (Stage) ->
+  'view/View'
+  'controller/Controller'
+], (View, Controller) ->
 
-  new Stage
+  stage = new View
+
+  control = new Controller stage

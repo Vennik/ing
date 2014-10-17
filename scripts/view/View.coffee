@@ -1,10 +1,10 @@
 define [
   'object/Element'
-  'object/Visual'
-  'object/Control'
+  'view/Stage'
+  'view/Control'
 ], (Element, Visual, Control) ->
-  class Stage extends Element
-    constructor: () ->
+  class View extends Element
+    constructor: ->
       super "body"
 
       visual = new Visual
