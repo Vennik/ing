@@ -25,8 +25,9 @@ define [
         @pinchstart = null;
       .on "pinchmove", (e) =>
         if @pinchstart
-          @setRadius @radius * e.gesture.scale / @pinchstart.gesture.scale
-          @setPosition @x + e.gesture.deltaX - @pinchstart.gesture.deltaX, @y + e.gesture.deltaY - @pinchstart.gesture.deltaY
+          radiusChange = @radius * e.gesture.scale / @pinchstart.gesture.scale - @radius
+          @setRadius @radius + radiusChange
+          @setPosition @x - radiusChange / 2, @y - radiusChange / 2
           @pinchstart = e
 
       # Enable pinch
