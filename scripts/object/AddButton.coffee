@@ -4,11 +4,11 @@ define [
   'object/GreenCircle'
 ], (Button, RedCircle, GreenCircle) ->
   class Div extends Button
-    constructor: (@stage, value) ->
+    constructor: (@visual, value) ->
       super value
 
       @click () =>
         if Math.random() > 0.5
-          @stage.append new RedCircle 100 + Math.random() * 600, 100 + Math.random() * 600, 75 + Math.random() * 75
+          @visual.append new RedCircle 100 + Math.random() * 600, 100 + Math.random() * 600, 75 + Math.random() * 75
         else
-          @stage.append new GreenCircle 100 + Math.random() * 600, 100 + Math.random() * 600, 75 + Math.random() * 75
+          @visual.append new GreenCircle 100 + Math.random() * 600, 100 + Math.random() * 600, 75 + Math.random() * 75

@@ -2,8 +2,8 @@ define [
   'object/Button'
 ], (Button) ->
   class ClearButton extends Button
-    constructor: (@stage, value) ->
+    constructor: (@visual, value) ->
       super value
 
       @click () =>
-        @stage.find("> .circle").remove()
+        @visual.find("> .circle").remove()
