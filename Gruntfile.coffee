@@ -40,6 +40,8 @@ module.exports = (grunt) ->
 
     watch:
       options:
+        spawn: false
+        atBegin: true
         livereload: true
 
       coffee:
@@ -50,22 +52,22 @@ module.exports = (grunt) ->
         files: ["<%= config.styles %>/**/*.less"]
         tasks: ['less:dev']
 
-  changedLess = Object.create(null)
-  changedCoffee = Object.create(null)
+  changedLess = Object.create null
+  changedCoffee = Object.create null
 
-  updateCoffee = grunt.util._.debounce ->
-    keys = Object.keys(changedCoffee)
+  updateCoffee = grunt.util._.debounce(() ->
     grunt.config 'coffee.dev.files.0.cwd', ''
-    grunt.config 'coffee.dev.files.0.src', keys
+    grunt.config 'coffee.dev.files.0.src', Object.keys(changedCoffee)
+    grunt.config 'coffee.dev.files.0.dest', '<%= config.tmp %>'
     changedCoffee = Object.create null
-  , 200
+  , 200)
 
-  updateLess = grunt.util._.debounce ->
-    keys = Object.keys changedLess
+  updateLess = grunt.util._.debounce(() ->
     grunt.config 'less.dev.files.0.cwd', ''
-    grunt.config 'less.dev.files.0.src', keys
+    grunt.config 'less.dev.files.0.src', Object.keys(changedCoffee)
+    grunt.config 'less.dev.files.0.dest', '<%= config.tmp %>'
     changedLess = Object.create null
-  , 200
+  , 200)
 
   grunt.event.on 'watch', (action, filepath, target) ->
     switch target
