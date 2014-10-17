@@ -27,7 +27,7 @@ define [
         if @pinchstart
           radiusChange = @radius * e.gesture.scale / @pinchstart.gesture.scale - @radius
           @setRadius @radius + radiusChange
-          @setPosition @x - radiusChange / 2, @y - radiusChange / 2
+          @setPosition @x - radiusChange, @y - radiusChange
           @pinchstart = e
 
       # Enable pinch
