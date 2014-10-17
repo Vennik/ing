@@ -1,8 +1,14 @@
 define [
-  'object/Stage',
+  'object/Stage'
+  'object/ButtonGroup'
   'object/AddButton'
-], (Stage, AddButton) ->
+  'object/ClearButton'
+], (Stage, ButtonGroup, AddButton, ClearButton) ->
 
   stage = new Stage()
 
-  stage.append new AddButton stage, "+"
+  buttonGroup = new ButtonGroup()
+  buttonGroup.append new AddButton stage, "+"
+  buttonGroup.append new ClearButton stage, "Clear"
+
+  stage.append buttonGroup

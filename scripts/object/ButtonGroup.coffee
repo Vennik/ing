@@ -1,0 +1,7 @@
+define [
+  'object/Element'
+], (Element) ->
+  class Div extends Element
+    constructor: () ->
+      super document.createElement "div"
+      @addClass "btn-group"
