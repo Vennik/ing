@@ -4,8 +4,8 @@ define [
   'object/GreenCircle'
 ], (Button, RedCircle, GreenCircle) ->
   class Div extends Button
-    constructor: (@visual, value) ->
-      super value
+    constructor: (@visual) ->
+      super '<span class="glyphicon glyphicon-plus"></span>'
 
       @click () =>
         if Math.random() > 0.5
