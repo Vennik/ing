@@ -1,7 +1,6 @@
 define [
   'object/Div'
 ], (Div) ->
-
   class Circle extends Div
     constructor: (x, y, radius) ->
       super()
@@ -34,7 +33,7 @@ define [
       @data "hammer"
       .get "pinch"
       .set
-        enable: true
+          enable: true
 
     setRadius: (radius) ->
       @radius = radius
