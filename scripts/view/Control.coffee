@@ -10,7 +10,7 @@ define [
     constructor: (@visual) ->
       super()
       @attr "id", "control"
-      @addClass "well"
+      @addClass "well well-lg"
 
       @append new Image "images/ing.png"
 
