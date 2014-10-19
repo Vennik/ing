@@ -64,7 +64,7 @@ module.exports = (grunt) ->
 
   updateLess = grunt.util._.debounce(() ->
     grunt.config 'less.dev.files.0.cwd', ''
-    grunt.config 'less.dev.files.0.src', Object.keys(changedCoffee)
+    grunt.config 'less.dev.files.0.src', Object.keys(changedLess)
     grunt.config 'less.dev.files.0.dest', '<%= config.tmp %>'
     changedLess = Object.create null
   , 200)
