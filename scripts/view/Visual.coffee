@@ -5,3 +5,7 @@ define [
     constructor: () ->
       super()
       @attr "id", "visual"
+
+      @hammer
+          preventDefault: true
+      .on "pan", (e) =>

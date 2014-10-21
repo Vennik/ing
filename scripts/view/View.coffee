@@ -1,6 +1,6 @@
 define [
   'object/Element'
-  'view/Stage'
+  'view/Visual'
   'view/Control'
 ], (Element, Visual, Control) ->
   class View extends Element
@@ -10,7 +10,3 @@ define [
       visual = new Visual
       @append visual
       @append new Control visual
-
-      @hammer
-        preventDefault: true
-      .on "pan", (e) =>
