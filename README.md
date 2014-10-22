@@ -20,3 +20,7 @@ Contacts
 ### René Vennik
 * +31627303545
 * renevennik@gmail.com
+
+### Gerard van Alphen
+* +31636196811
+* gerard@vanalphen.me
