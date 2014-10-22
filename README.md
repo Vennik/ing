@@ -18,5 +18,5 @@ Contacts
 --------
 
 ### René Vennik
-+31627303545
-renevennik@gmail.com
+* +31627303545
+* renevennik@gmail.com
