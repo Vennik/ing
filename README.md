@@ -33,5 +33,7 @@ Contact
 ### Gerben Oolbekkink
 
 ### Ruben Verboon
+* +316 34038190
+* ruben@rubenverboon.nl
 
 ### Jasper Nieuwdorp
