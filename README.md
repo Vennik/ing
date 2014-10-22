@@ -14,13 +14,17 @@ Run `grunt` from the commandline.
 
 Use `grunt watch` to automatically update files. Use a livereload client to automatically refresh the browser.
 
-Contacts
+Contact
 --------
 
 ### René Vennik
-* +31627303545
+* +316 27303545
 * renevennik@gmail.com
 
 ### Gerard van Alphen
-* +31636196811
+* +316 36196811
 * gerard@vanalphen.me
+
+### Aaron Ang
+* +316 11846465
+* awz.ang@gmail.com
