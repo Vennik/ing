@@ -29,3 +29,9 @@ Contact
 ### Aaron Ang
 * +316 11846465
 * awz.ang@gmail.com
+
+### Gerben Oolbekkink
+
+### Ruben Verboon
+
+### Jasper Nieuwdorp
