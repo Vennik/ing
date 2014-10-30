@@ -1,10 +1,8 @@
-ING
-===
+# ING
 
 HTML5 WebGL application
 
-Installation
-------------
+## Installation
 
 You'll have to install `node`, `npm`, `grunt`, `bower` and `less`.
 
@@ -15,36 +13,36 @@ Run `grunt` from the commandline.
 Use `grunt watch` to automatically update files.
 Use a livereload client to automatically refresh the browser, for example: [LiveReload for Chrome](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en.)
 
-Resources
-------------
-[REST tutorial by Pearson](http://www.restapitutorial.com/lessons/whatisrest.html)
+## Resources
 
-Contact
---------
+### REST
+* [A Beginner's Guide to HTTP and REST by Ludovico Fischer](http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340)
+* [How I explained REST to My Wife](http://www.looah.com/source/view/2284)
+* [Intro to REST by Google Developers](https://www.youtube.com/watch?v=YCcAE2SCQ6k)
+* [REST tutorial by Pearson](http://www.restapitutorial.com/lessons/whatisrest.html)
 
-### René Vennik
-* +316 27303545
-* renevennik@gmail.com
+##Contact
 
-### Gerard van Alphen
-* +316 36196811
-* gerard@vanalphen.me
+René Vennik
+Phone: +316 27303545
+Email: renevennik@gmail.com
 
-### Aaron Ang
-* +316 11846465
-* awz.ang@gmail.com
+Gerard van Alphen
+Phone: +316 36196811
+Email: gerard@vanalphen.me
 
-### Gerben Oolbekkink
-* +316 25173805
-* g.j.w.oolbekkink@gmail.com
+Aaron Ang
+Phone: +316 11846465
+Email: awz.ang@gmail.com
 
-### Ruben Verboon
-* +316 34038190
-* ruben@rubenverboon.nl
+Gerben Oolbekkink
+Phone +316 25173805
+Email: g.j.w.oolbekkink@gmail.com
 
-### Jasper Nieuwdorp
-* +316 41699543
-* nieuwdorp.jasper@gmail.com
-=======
-Use `grunt watch` to automatically update files. Use a livereload client to automatically refresh the browser.
+Ruben Verboon
+Phone: +316 34038190
+Email: ruben@rubenverboon.nl
 
+Jasper Nieuwdorp
+Phone: +316 41699543
+Email: nieuwdorp.jasper@gmail.com
