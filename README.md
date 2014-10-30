@@ -15,6 +15,10 @@ Run `grunt` from the commandline.
 Use `grunt watch` to automatically update files.
 Use a livereload client to automatically refresh the browser, for example: [LiveReload for Chrome](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en.)
 
+Resources
+------------
+[REST tutorial by Pearson](http://www.restapitutorial.com/lessons/whatisrest.html)
+
 Contact
 --------
 
@@ -39,3 +43,8 @@ Contact
 * ruben@rubenverboon.nl
 
 ### Jasper Nieuwdorp
+* +316 41699543
+* nieuwdorp.jasper@gmail.com
+=======
+Use `grunt watch` to automatically update files. Use a livereload client to automatically refresh the browser.
+
