@@ -45,6 +45,3 @@ Contact
 ### Jasper Nieuwdorp
 * +316 41699543
 * nieuwdorp.jasper@gmail.com
-=======
-Use `grunt watch` to automatically update files. Use a livereload client to automatically refresh the browser.
-
