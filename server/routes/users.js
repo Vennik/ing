@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
-var fs = require('fs');
 var querystring = require('querystring');
 var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'localhost',
+  host: '172.17.34.171',
+  port: 3306,
   user: 'ing',
   password: 'hack',
   database: 'ing'
