@@ -4,14 +4,7 @@ var http = require('http');
 var querystring = require('querystring');
 var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'ing',
-  password: 'hack',
-  database: 'ing'
-});
+var connection = require('../control/mysql');
 
 connection.connect(function (err) {
   // connected! (unless `err` is set)
