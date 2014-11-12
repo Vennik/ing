@@ -13,7 +13,7 @@ define [
 
     setLeft: (index) ->
       @css
-        top: index * 160
+        top: index * 140
       @addClass "small"
 
     setMain: (index) ->
