@@ -38,8 +38,8 @@ token = function (id, cb) {
 };
 
 
-router.post('/banks/own', function (req, rest){
-  eigenBanken(req,function(chunk){
+router.post('/banks/own', function (req, rest) {
+  eigenBanken(req, function (chunk) {
     rest.send(chunk);
   });
 });
@@ -50,7 +50,7 @@ var eigenBanken = function (req, rest) {
   elkeBank(id, token, rest);
 };
 
-var elkeBank = function(id, token, rest) {
+var elkeBank = function (id, token, rest) {
   var options = {
     host: 'ingcommonapi-test.apigee.net',
     port: 80,
@@ -70,24 +70,24 @@ var elkeBank = function(id, token, rest) {
 router.post('/banks/all', function (req, rest) {
   var id = req.param('userId');
   var token = req.param('token');
-  var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE `type`="ouder" AND ?', {'access.id':id}, function(err, others){
-    eigenBanken(req, function(chunk){
-      var response = {'self':chunk, 'fullAccess':[]};
+  var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE `type`="ouder" AND ?', {'access.id': id}, function (err, others) {
+    eigenBanken(req, function (chunk) {
+      var response = {'self': chunk, 'fullAccess': []};
       addFulls(others, response, rest);
     })
   })
 });
 
-var addFulls = function(others, response, rest) {
-  if(others.length==0){
+var addFulls = function (others, response, rest) {
+  if (others.length == 0) {
     rest.send(JSON.stringify(response))
   }
   else {
     var item = others.shift();
-    elkeBank(item.target, item.token, function(chunk){
-      response.fullAccess.push(chunk);
-      addFulls(others,response,rest);
-    } )
+    elkeBank(item.target, item.token, function (chunk) {
+      response.fullAccess.push({ person: item.target, banks: chunk});
+      addFulls(others, response, rest);
+    })
   }
 };
 
