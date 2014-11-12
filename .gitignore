@@ -7,6 +7,7 @@ dist
 
 # NPM stuff
 node_modules
+npm-debug.log
 
 # Bower stuff
 lib
