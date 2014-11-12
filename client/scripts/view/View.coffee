@@ -44,7 +44,11 @@ define [
         path = window.location.pathname;
         url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
-        $.ajax()
+        $.ajax url + "/users/banks/all",
+          type: "POST"
+          data: {'userId' :11701, 'token' : 'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwMzEyMzksIm5vbmNlIjoiZTY4YWQzOGUtNGI0ZS00MGNkLWFiZDYtMWExMzc0NzMwODI1IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJVSUQxMTcwMSIsImp0aSI6IjhiMTc1ZDdhLWNjZGItNDQyZC1iNTczLWMxODlkMTcwZGFkZCIsImlhdCI6MTQxNTgwODQ5Mn0.QM3tyTRnZnAerZWpntiv0-BB0xdpZIcK1_Xcnn52cwA'}
+        .done (data) ->
+          console.log data
 
         @visual.circlesToMain()
         @visual

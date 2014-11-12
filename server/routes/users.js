@@ -6,10 +6,10 @@ var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: '172.17.34.171',
+  host: 'localhost',
   port: 3306,
-  user: 'ing',
-  password: 'hack',
+  user: 'root',
+  password: '',
   database: 'ing'
 });
 
