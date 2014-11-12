@@ -1,5 +1,5 @@
 define [
-  'object/Element'
+  '../../dist/scripts/object/Element'
   'object/ActionGroup'
   'object/AcceptButton'
   'object/RejectButton'

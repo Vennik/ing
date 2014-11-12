@@ -1,5 +1,5 @@
 define [
-  'object/Element'
+  '../../dist/scripts/object/Element'
 ], (Element) ->
   class Login extends Element
     constructor: (@view) ->

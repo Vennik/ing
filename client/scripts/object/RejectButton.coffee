@@ -1,5 +1,5 @@
 define [
-  'object/Button'
+  '../../dist/scripts/object/Button'
 ], (Button) ->
   class RejectButton extends Button
     constructor: ->
