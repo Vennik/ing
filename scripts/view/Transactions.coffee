@@ -1,11 +1,9 @@
 define [
-  'object/Div'
+  'object/ListGroup'
   'object/Image'
-], (Div, Image) ->
-  class Control extends Div
+  'object/TransactionItem'
+  'object/TransactionList'
+], (ListGroup, Image, TransactionItem, TransactionList) ->
+  class Transactions extends TransactionList
     constructor: (@visual) ->
       super()
-      @attr "id", "control"
-      @addClass "well well-lg"
-
-      @append new Image "images/ing.png"

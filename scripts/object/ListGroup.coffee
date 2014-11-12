@@ -1,6 +1,6 @@
 define [
   'object/Element'
 ], (Element) ->
-  class Ul extends Element
+  class ListGroup extends Element
     constructor: ->
       super document.createElement "ul"
