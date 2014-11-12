@@ -84,6 +84,31 @@ var addFulls = function (others, response, rest) {
   }
 };
 
+router.post('/transactions', function(req, rest){
+  var id =  req.param('userId');
+  var bank = req.param('bankId');
+  token(id, function(token){
+    var options = {
+      host: 'ingcommonapi-test.apigee.net',
+      port: 80,
+      path: '/commonapi/v0/nl/persons/' + id + "/transactions?apikey=" + consumerKey + "&customerProductId="+bank,
+      method: 'GET',
+      headers: {'Authorization': token}
+    };
+    var request = http.request(options, function (res) {
+      res.setEncoding('utf8');
+      var data ='';
+      res.on('data', function (chunk) {
+        data+=chunk;
+      });
+      res.on('end', function(){
+        rest.send(data);
+      })
+    });
+    request.end();
+  });
+});
+
 router.post('/login', function (req, res) {
   var token = req.param('token');
   console.log(token);
