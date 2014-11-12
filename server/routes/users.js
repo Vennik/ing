@@ -38,7 +38,30 @@ token = function (id, cb) {
 };
 
 
-router.get('/banks/:id', function (req, rest) {
+router.post('/banks/:id', function (req, rest){
+  eigenBanken(req,rest);
+});
+
+var eigenBanken = function (req, rest) {
+  var id = req.param('userId');
+  var token = req.param('token');
+  var options = {
+    host: 'ingcommonapi-test.apigee.net',
+    port: 80,
+    path: '/commonapi/v0/nl/persons/' + id + "/products?apikey=" + consumerKey,
+    method: 'GET',
+    headers: {'Authorization': token}
+  };
+  var request = http.request(options, function (res) {
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+      rest.send(chunk);
+    });
+  });
+  request.end();
+};
+
+router.get('/banks/:id/all', function (req, rest) {
   var id = req.param('userid');
   var token = req.param('token');
   var options = {
@@ -56,6 +79,7 @@ router.get('/banks/:id', function (req, rest) {
   });
   request.end();
 });
+
 
 
 router.post('/login', function (req, res) {
