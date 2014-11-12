@@ -84,6 +84,15 @@ router.post('/banks/all', function (req, rest) {
   })
 });
 
+router.post('/banks/allOpen', function (req, rest) {
+  var id = req.param('userId');
+  var token = req.param('token');
+  var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE (`type`="ouder" OR `type`="kind") AND ?', {'access.id': id}, function (err, others) {
+    var response = {'fullAccess': []};
+    addFulls(others, response, rest);
+  });
+});
+
 var addFulls = function (others, response, rest) {
   if (others.length == 0) {
     rest.send(JSON.stringify(response))
@@ -101,7 +110,7 @@ router.post('/transactions', function (req, rest) {
   var id = req.param('userId');
   var bank = req.param('bankId');
 
-  token(id, function(token) {
+  token(id, function (token) {
     apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, token, rest.send);
   });
 });
@@ -117,7 +126,7 @@ router.post('/transaction/request', function (req, rest) {
   var sql = connection.query('INSERT INTO `verzoeken` (van, naar, vanIban, naarIban, bedrag, notitie) VALUES (?,?,?,?,?,?);', [van, naar, vaniban, naariban, bedrag, note], function (err, others) {
     connection.query('SELECT max(tid) AS "max" FROM `verzoeken`', function (err, others) {
       console.log(others);
-      rest.send(JSON.stringify({'tid':others[0].max}));
+      rest.send(JSON.stringify({'tid': others[0].max}));
       console.log(err);
     })
   });
