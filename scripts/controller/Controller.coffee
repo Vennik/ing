@@ -1,10 +1,7 @@
 define [
-  'controller/ZIndexController'
-], (ZIndexController) ->
+  'controller/NavigationController'
+], (NavigationController) ->
   class Controller
-    # Controls the zIndex
-    # Controls connections?
-    # Controls everything?
-    # Might not need this
+    constructor: (@view) ->
 
-    new ZIndexController()
+      new NavigationController(@view)

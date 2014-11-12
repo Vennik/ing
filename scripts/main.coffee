@@ -4,6 +4,6 @@ define [
   'controller/Controller'
 ], (View, Circle, Controller) ->
 
-  stage = new View
+  view = new View "main"
 
-  control = new Controller stage
+  control = new Controller view
