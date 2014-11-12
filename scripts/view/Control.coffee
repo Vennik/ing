@@ -19,4 +19,4 @@ define [
       buttonGroup.append new AddButton @visual
       buttonGroup.append new ClearButton @visual
       @append buttonGroup
-      @append new TransactionButton
+      @append new TransactionButton @visual
