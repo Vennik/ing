@@ -6,6 +6,27 @@ var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
 
 var connection = require('../control/mysql');
 
+var apiCall = function (location, query, token, cb) {
+  var options = {
+    host: 'ingcommonapi-test.apigee.net',
+    port: 80,
+    path: '/commonapi/v0/nl' + location + "?" + querystring.stringify(query),
+    method: 'GET',
+    headers: {'Authorization': token}
+  };
+
+  http.request(options, function (res) {
+    var data = '';
+    res.setEncoding('utf8')
+    res.on('data', function (chunk) {
+      data += chunk;
+    })
+      .on('end', function () {
+        cb(data);
+      });
+  }).end();
+};
+
 connection.connect(function (err) {
   // connected! (unless `err` is set)
   console.log(err);
@@ -23,7 +44,12 @@ router.get('/usr', function (req, res) {
   });
 });
 
-token = function (id, cb) {
+/**
+ * Return the bearer token from id
+ * @param id A person
+ * @param cb Called on finish
+ */
+var token = function (id, cb) {
   connection.query('SELECT `token` FROM tokens WHERE ?', {id: id}, function (err, result) {
     console.log(result[0].token);
     cb(result[0].token);
@@ -43,21 +69,8 @@ var eigenBanken = function (req, rest) {
   elkeBank(id, token, rest);
 };
 
-var elkeBank = function (id, token, rest) {
-  var options = {
-    host: 'ingcommonapi-test.apigee.net',
-    port: 80,
-    path: '/commonapi/v0/nl/persons/' + id + "/products?apikey=" + consumerKey,
-    method: 'GET',
-    headers: {'Authorization': token}
-  };
-  var request = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      rest(chunk);
-    });
-  });
-  request.end();
+var elkeBank = function (id, token, cb) {
+  apiCall('/persons/' + id + '/products', {'apikey': consumerKey}, token, cb);
 }
 
 router.post('/banks/all', function (req, rest) {
@@ -138,30 +151,15 @@ router.post('/create/:id', function (req, res) {
 
 
 var login = function (token, rest) {
-  var options = {
-    host: 'ingcommonapi-test.apigee.net',
-    port: 80,
-    path: '/commonapi/v0/nl/me/' + "?apikey=" + consumerKey,
-    method: 'GET',
-    headers: {'Authorization': token}
-  };
-  var req = http.request(options, function (res) {
-    if (res.statusCode != 200) {
-      rest(-1);
-      return;
-    }
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var body = JSON.parse(chunk);
-      var query = connection.query('UPDATE `tokens` SET ? WHERE ?', [
-        {'token': token},
-        {'id': body.userId}
-      ], function (err, result) {
-        rest(body.userId);
-      });
+  apiCall('/me', {'apikey': consumerKey}, token, function (data) {
+    var body = JSON.parse(data);
+    connection.query('UPDATE `tokens` SET ? WHERE ?', [
+      {'token': token},
+      {'id': body.userId}
+    ], function (err, result) {
+      rest(body.userId);
     });
   });
-  req.end();
 };
 
 module.exports = router;
