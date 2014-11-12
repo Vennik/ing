@@ -17,6 +17,9 @@ define [
 
       if state == "account"
         @visual.circlesToLeft()
+        @visual
+        .find "#transaction-list"
+        .remove()
         @visual.append new TransactionList
       if state == "main"
         @visual.circlesToMain()
