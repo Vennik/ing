@@ -1,5 +1,6 @@
 @red: #be1b1b;
 @green: #299c23;
+@orange: #f08231;
 
 * {
   margin: 0;
@@ -20,16 +21,14 @@ body, html {
   right: 300px;
   overflow: auto;
   .circle {
-    position: absolute;
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
-    &.red {
-      background: @red;
-    }
-    &.green {
-      background: @green;
-    }
+    background: @orange;
   }
 }
 

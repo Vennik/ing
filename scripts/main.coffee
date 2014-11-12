@@ -1,7 +1,8 @@
 define [
   'view/View'
+  'object/Circle'
   'controller/Controller'
-], (View, Controller) ->
+], (View, Circle, Controller) ->
 
   stage = new View
 
