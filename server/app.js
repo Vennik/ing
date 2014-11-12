@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 
+app.use('/authorize', function(req, res) {
+    res.send("OK");
+    res.end(200);
+})
 app.use('/users', users);
 
 // catch 404 and forward to error handler
