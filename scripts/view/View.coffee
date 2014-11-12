@@ -3,14 +3,18 @@ define [
   'object/TransactionList'
   'view/Visual'
   'view/Control'
-], (Element, TransactionList, Visual, Control) ->
+  'view/Login'
+], (Element, TransactionList, Visual, Control, Login) ->
   class View extends Element
     constructor: (@state) ->
       super "body"
 
       @visual = new Visual
+
       @append @visual
       @append new Control @
+      if !$.cookie("token")
+        @append new Login
 
     setState: (state) ->
       @state = state
