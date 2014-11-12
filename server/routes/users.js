@@ -17,13 +17,13 @@ var apiCall = function (location, query, token, cb) {
 
   http.request(options, function (res) {
     var data = '';
-    res.setEncoding('utf8')
+    res.setEncoding('utf8');
     res.on('data', function (chunk) {
       data += chunk;
-    })
-      .on('end', function () {
+    });
+    res.on('end', function () {
         cb(data);
-      });
+    });
   }).end();
 };
 

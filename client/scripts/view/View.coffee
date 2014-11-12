@@ -26,19 +26,26 @@ define [
         @append @visual
         @append new Control @
 
-        path = window.location.pathname;
-        url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
-
         vis = @visual
-        $.ajax url + "/users/banks/all",
+        $.ajax "/users/banks/all",
           dataType: "json"
           type: "POST"
           data: {'userId': $.cookie("user"), 'token' : $.cookie("token")}
         .done (data) ->
-          vis.update(data);
+          vis.update(JSON.parse(data.self));
+          console.log data.self
+          # download all transactions for the user
+          $.ajax "/users/transactions",
+            datatType: "json"
+            type: "POST"
+            data: {'userId' :11701, 'token' : 'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwMzEyMzksIm5vbmNlIjoiZTY4YWQzOGUtNGI0ZS00MGNkLWFiZDYtMWExMzc0NzMwODI1IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJVSUQxMTcwMSIsImp0aSI6IjhiMTc1ZDdhLWNjZGItNDQyZC1iNTczLWMxODlkMTcwZGFkZCIsImlhdCI6MTQxNTgwODQ5Mn0.QM3tyTRnZnAerZWpntiv0-BB0xdpZIcK1_Xcnn52cwA'}
+          .done (data) ->
+            console.log data.self
+            vis.updateTransactions JSON.parse data.self
+
 
       if @state == "login"
-        @empty()
+        @html ''
         @append new Login @
 
       if @state == "account"

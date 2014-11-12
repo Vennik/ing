@@ -24,6 +24,10 @@ define [
         do (circle) ->
           circle.setMain _i
 
+
+    updateTransactions: (data) ->
+
+
     update: (data) ->
       for item in @circles
         item.remove()
