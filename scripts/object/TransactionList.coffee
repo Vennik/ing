@@ -8,7 +8,7 @@ define [
       @attr "id", "transaction-list"
       @addClass "list-group"
 
-      @append new TransactionItem "Test"
-      @append new TransactionItem "Test"
-      @append new TransactionItem "Test"
-      @append new TransactionItem "Test"
+      @append new TransactionItem "Test", "8414495", "12-11-2014"
+      @append new TransactionItem "Test", "8414495", "12-11-2014"
+      @append new TransactionItem "Test", "8414495", "28-3-2014"
+      @append new TransactionItem "Test", "8414495", "12-11-2014"

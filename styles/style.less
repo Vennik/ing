@@ -60,7 +60,7 @@ body, html {
       height: 120px;
       left: 0;
       position: absolute;
-      .name{
+      .name {
         padding-top: 30px;
       }
       .account {
@@ -68,8 +68,33 @@ body, html {
       }
     }
   }
-  #transaction-list{
+  #transaction-list {
     margin-left: 160px;
+    .date {
+      float: left;
+      height: 62px;
+      width: 100px;
+      line-height: 42px;
+      font-size: 12px;
+      text-align: right;
+      border-right: 1px solid #ddd;
+      margin: -10px 15px -10px -15px;
+      padding: 10px 15px;
+    }
+    .btn-group {
+      float: right;
+      margin-top: 4px;
+    }
+    .drop {
+      display: none;
+      clear: both;
+      border-top: 1px solid #ddd;
+      margin: 12px -15px -10px;
+      padding: 10px 15px;
+      &.open {
+        display: block;
+      }
+    }
   }
 }
 
