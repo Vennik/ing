@@ -10,17 +10,21 @@ define [
     constructor: (@state) ->
       super "body"
 
-      @visual = new Visual
-
-      @append @visual
-      @append new Control @
       if !$.cookie("token")
-        @append new Login
+        @append new Login @
+      else
+        @setState "main"
 
     setState: (state) ->
+      @prevstate = @state;
       @state = state
 
-      if state == "account"
+      if @prevstate == "login"
+        @visual = new Visual
+        @append @visual
+        @append new Control @
+
+      if @state == "account"
         @visual.circlesToLeft()
         @visual
         .find "#transaction-list"
@@ -30,7 +34,13 @@ define [
         .remove()
         @visual.append new RequestList
         @visual.append new TransactionList
-      if state == "main"
+      if @state == "main"
+
+        path = window.location.pathname;
+        url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+
+        $.ajax()
+
         @visual.circlesToMain()
         @visual
         .find "#transaction-list"

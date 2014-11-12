@@ -2,7 +2,7 @@ define [
   'object/Element'
 ], (Element) ->
   class Login extends Element
-    constructor: (@state) ->
+    constructor: (@view) ->
       super document.createElement "iframe"
       @attr "id", "login"
       path = window.location.pathname;
@@ -15,3 +15,4 @@ define [
         $.cookie("token", token);
         if(token.length > 0)
           @hide()
+          @view.setState "main"
