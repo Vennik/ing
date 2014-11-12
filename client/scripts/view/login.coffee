@@ -4,14 +4,45 @@ define [
   class Login extends Element
     constructor: (@view) ->
       super document.createElement "iframe"
+
+      path = window.location.pathname;
+      @url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+
+      @mainsrc = "https://commonapi.paymentslab.nl/authserver/oauth2/authorization?client_id=HomebankApp&redirect_uri=" + @url + "&response_type=token&grant_type=implicit"
+      @reset()
+
       @attr "id", "login"
-      url = window.location.origin + "/authorize";
-      @attr "src", "https://commonapi.paymentslab.nl/authserver/oauth2/authorization?client_id=HomebankApp&redirect_uri=" + url + "&response_type=token&grant_type=implicit"
 
       @on "load", () =>
         hash = @[0].contentWindow.location.hash
-        token = hash.replace("#access_token=", 0).split("&")[0];
-        $.cookie("token", token);
+        hash = hash.substr(1).split("&");
+        result = [];
+        for item in hash
+          temp = item.split("=");
+          result[temp[0]] = temp[1];
+
+        token = result['token_type'] + ' ' + result['access_token']
+
         if(token.length > 0)
-          @hide()
-          @view.setState "main"
+
+          el = @;
+          $.ajax @url + "/users/login",
+            dataType: "json"
+            type: "POST"
+            data:
+              'token': token
+          .done (data) ->
+            console.log data
+            if !data.userid
+              el.reset()
+            else
+              $.cookie "user", data.userid
+              $.cookie "token", token
+              @view.setState "main"
+              @hide()
+
+        else
+          reset()
+
+    reset: () ->
+      @attr "src", @mainsrc
