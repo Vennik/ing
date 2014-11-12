@@ -5,7 +5,9 @@ define [
     constructor: (@state) ->
       super document.createElement "iframe"
       @attr "id", "login"
-      @attr "src", "https://commonapi.paymentslab.nl/authserver/oauth2/authorization?client_id=HomebankApp&redirect_uri=http://ing/authorize.html&response_type=token&grant_type=implicit"
+      path = window.location.pathname;
+      url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+      @attr "src", "https://commonapi.paymentslab.nl/authserver/oauth2/authorization?client_id=HomebankApp&redirect_uri=" + url + "/authorize.html&response_type=token&grant_type=implicit"
 
       @on "load", () =>
         hash = @[0].contentWindow.location.hash

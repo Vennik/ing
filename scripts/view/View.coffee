@@ -1,10 +1,11 @@
 define [
   'object/Element'
   'object/TransactionList'
+  'object/RequestList'
   'view/Visual'
   'view/Control'
   'view/Login'
-], (Element, TransactionList, Visual, Control, Login) ->
+], (Element, TransactionList, RequestList, Visual, Control, Login) ->
   class View extends Element
     constructor: (@state) ->
       super "body"
@@ -24,9 +25,16 @@ define [
         @visual
         .find "#transaction-list"
         .remove()
+        @visual
+        .find "#request-list"
+        .remove()
+        @visual.append new RequestList
         @visual.append new TransactionList
       if state == "main"
         @visual.circlesToMain()
         @visual
         .find "#transaction-list"
+        .remove()
+        @visual
+        .find "#request-list"
         .remove()
