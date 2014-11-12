@@ -39,23 +39,23 @@ token = function (id, cb) {
 
 
 router.get('/banks/:id', function (req, rest) {
-  var id = req.param('id');
-  token(id, function (token) {
-    var options = {
-      host: 'ingcommonapi-test.apigee.net',
-      port: 80,
-      path: '/commonapi/v0/nl/persons/' + id + "/products?apikey=" + consumerKey,
-      method: 'GET',
-      headers: {'Authorization': token}
-    };
-    var req = http.request(options, function (res) {
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-        rest.send(chunk);
-      });
+  var id = req.param('userid');
+  var token = req.param('token');
+  var options = {
+    host: 'ingcommonapi-test.apigee.net',
+    port: 80,
+    path: '/commonapi/v0/nl/persons/' + id + "/products?apikey=" + consumerKey,
+    method: 'GET',
+    headers: {'Authorization': token}
+  };
+  var request = http.request(options, function (res) {
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+      rest.send(chunk);
     });
-    req.end();
-  })
+  });
+  request.end();
+
 
 });
 
