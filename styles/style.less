@@ -3,6 +3,8 @@
 @orange: #f08231;
 @white: #fff;
 
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
 /* Transition */
 .transition (...) {
   -webkit-transition: @arguments;
@@ -36,6 +38,7 @@ body, html {
     width: 200px;
     height: 200px;
     margin: 20px;
+    padding: 20px;
     border-radius: 50%;
     cursor: pointer;
     text-align: center;
@@ -47,13 +50,13 @@ body, html {
     overflow: hidden;
     .transition(top .2s;);
     .name {
-      font: bold 20px/30px 'Arial';
+      font: 25px/30px 'Bree Serif', 'Arial';
       display: block;
-      padding: 70px 0 0;
+      padding: 50px 0 0;
     }
     .account {
       display: block;
-      font: 16px/30px 'Arial';
+      font: 16px/30px 'Bree Serif', 'Arial';
     }
     &.small {
       width: 120px;
@@ -61,7 +64,8 @@ body, html {
       left: 0;
       position: absolute;
       .name {
-        padding-top: 30px;
+        padding-top: 10px;
+        font-size: 18px;
       }
       .account {
         display: none;
@@ -69,7 +73,7 @@ body, html {
     }
   }
   #transaction-list {
-    margin-left: 160px;
+    margin-left: 140px;
     .date {
       float: left;
       height: 62px;
@@ -84,6 +88,13 @@ body, html {
     .btn-group {
       float: right;
       margin-top: 4px;
+    }
+    .panel{
+      float: right;
+      margin: 4px 15px 0 0;
+      height: 34px;
+      padding: 0 10px;
+      line-height: 32px;
     }
     .drop {
       display: none;
