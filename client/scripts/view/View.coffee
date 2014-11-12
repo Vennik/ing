@@ -22,7 +22,7 @@ define [
       @state = state
 
       if @prevstate == "login"
-        @visual = new Visual
+        @visual = new Visual this
         @append @visual
         @append new Control @
 
@@ -44,6 +44,16 @@ define [
       if @state == "account"
         @visual.circlesToLeft()
 
+      if state == "main"
+        @visual.circlesToMain()
+
+        @visual
+        .find ".listcontainer"
+        .remove()
+
+
+    toggleTransactions: (data) ->
+      if @state == "account"
         @visual
         .find ".listcontainer"
         .remove()
@@ -53,11 +63,10 @@ define [
         container.append new Title('Requests')
         container.append new RequestList
         container.append new Title('Transactions')
-        container.append new TransactionList
+        container.append new TransactionList data
         @visual.append container
 
-      if state == "main"
-        @visual.circlesToMain()
+      if @state == "main"
         @visual
         .find ".listcontainer"
         .remove()

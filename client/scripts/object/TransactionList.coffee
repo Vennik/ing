@@ -3,12 +3,13 @@ define [
   'object/TransactionItem'
 ], (Element, TransactionItem) ->
   class TransactionList extends Element
-    constructor: ->
+    constructor: (@data) ->
       super document.createElement "ul"
       @attr "id", "transaction-list"
       @addClass "list-group"
 
-      @append new TransactionItem "Test", "8414495", "12-11-2014", 2023
-      @append new TransactionItem "Test", "8414495", "12-11-2014", 2023
-      @append new TransactionItem "Test", "8414495", "28-3-2014", 2030
-      @append new TransactionItem "Test", "8414495", "12-11-2014", 123
+      console.log(@data)
+      for transaction in @data
+        date = new Date(transaction.accountingDate.datetime)
+        date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
+        @append new TransactionItem transaction.description ?= "", transaction.counterpartProductId, date, transaction.amount.value

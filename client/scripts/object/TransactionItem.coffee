@@ -27,7 +27,7 @@ define [
         </form>
       </div>"
 
-      @prepend "<div class='panel panel-default'>€ #{amount/100}</div>"
+      @prepend "<div class='panel panel-default'>€ #{amount}</div>"
 
       @actionGroup = new ActionGroup
       @actionGroup.append new RequestButton amount

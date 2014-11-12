@@ -1,15 +1,30 @@
 define [
   'object/A',
   'object/Element'
-], (A, Element) ->
+  'view/View'
+], (A, Element, View) ->
   class Circle extends A
-    constructor: (@name, @account) ->
+    constructor: (@name, @account, @view) ->
       super()
 
       @addClass "circle"
 
       @append new Element "<span class='name'>#{@name}</span>"
       @append new Element "<span class='account'>#{@account}</span>"
+
+      path = window.location.pathname;
+      url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+
+      @click () =>
+        $.ajax url + "/users/transactions",
+          dataType: "json"
+          type: "POST"
+          data:
+            'userId': 11701
+            'bankId': @account
+        .done (data) =>
+          console.log(data.list)
+          @view.toggleTransactions(data.list)
 
     setLeft: (index) ->
       @css

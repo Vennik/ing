@@ -1,9 +1,10 @@
 define [
   'object/Div'
   'object/Circle'
-], (Div, Circle) ->
+  'view/View'
+], (Div, Circle, View) ->
   class Visual extends Div
-    constructor: () ->
+    constructor: (@view) ->
       super()
       @attr "id", "visual"
 
@@ -30,6 +31,6 @@ define [
       @circles = []
       for item in data.list
         console.log item
-        circle = new Circle item.customerDescription.split(",").reverse().join(" "), item.iban
+        circle = new Circle item.customerDescription.split(",").reverse().join(" "), item.iban, @view
         @circles.push circle
         @append circle
