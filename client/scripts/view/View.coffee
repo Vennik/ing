@@ -33,7 +33,7 @@ define [
         vis = @visual
         $.ajax "/users/banks/all"
           .done (data) ->
-            vis.update(JSON.parse(data.self))
+            vis.update(data)
             console.log data.self
             # download all transactions for the user
             $.ajax "/users/transactions"
