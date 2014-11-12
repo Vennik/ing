@@ -33,19 +33,33 @@ body, html {
     color: @white;
     background: @orange;
     text-decoration: none;
-    .name{
+    position: relative;
+    overflow: hidden;
+    .name {
       font: bold 20px/30px 'Arial';
       display: block;
       padding: 70px 0 0;
     }
-    .account{
+    .account {
       display: block;
       font: 16px/30px 'Arial';
+    }
+    &.small {
+      width: 120px;
+      height: 120px;
+      left: 0;
+      position: absolute;
+      .name{
+        padding-top: 30px;
+      }
+      .account {
+        display: none;
+      }
     }
   }
 }
 
-#control{
+#control {
   float: right;
   width: 300px;
   height: 100%;
@@ -54,7 +68,7 @@ body, html {
   border: 0;
   margin: 0;
   border-left: 1px solid #ddd;
-  img{
+  img {
     float: left;
     margin: 0 1px 24px;
   }

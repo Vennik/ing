@@ -3,11 +3,10 @@ define [
   'object/Image'
   'object/Element'
   'object/ButtonGroup'
-  'object/AddButton'
-  'object/ClearButton'
-], (Div, Image, Element, ButtonGroup, AddButton, ClearButton) ->
+  'object/HomeButton'
+], (Div, Image, Element, ButtonGroup, HomeButton) ->
   class Control extends Div
-    constructor: (@visual) ->
+    constructor: (@view) ->
       super()
       @attr "id", "control"
       @addClass "well well-lg"
@@ -15,6 +14,5 @@ define [
       @append new Image "images/ing.png"
 
       buttonGroup = new ButtonGroup()
-      buttonGroup.append new AddButton @visual
-      buttonGroup.append new ClearButton @visual
+      buttonGroup.append new HomeButton @view
       @append buttonGroup

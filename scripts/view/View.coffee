@@ -7,9 +7,14 @@ define [
     constructor: (@state) ->
       super "body"
 
-      visual = new Visual
-      @append visual
-      @append new Control visual
+      @visual = new Visual
+      @append @visual
+      @append new Control @
 
     setState: (state) ->
       @state = state
+
+      if state == "account"
+        @visual.circlesToLeft()
+      if state == "main"
+        @visual.circlesToMain()
