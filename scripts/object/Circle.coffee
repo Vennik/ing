@@ -1,15 +1,14 @@
 define [
-  'object/Div',
+  'object/A',
   'object/Element'
-], (Div, Element) ->
-  class Circle extends Div
+], (A, Element) ->
+  class Circle extends A
     constructor: (@name, @account) ->
       super()
 
       @addClass "circle"
 
-      nameElement = new Element "<span/>";
-      nameElement.html "test"
+      nameElement = new Element "<span>#{@name}</span>";
       @html nameElement
 
       #@setRadius radius
