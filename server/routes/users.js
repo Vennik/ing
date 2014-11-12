@@ -51,7 +51,6 @@ router.get('/usr', function (req, res) {
  */
 var token = function (id, cb) {
   connection.query('SELECT `token` FROM tokens WHERE ?', {id: id}, function (err, result) {
-    console.log(result[0].token);
     cb(result[0].token);
   });
 };
@@ -64,18 +63,25 @@ router.post('/banks/own', function (req, rest) {
 });
 
 var eigenBanken = function (req, rest) {
-  var id = req.param('userId');
-  var token = req.param('token');
+  var id = req.cookies['user'];
+  var token = req.cookies['token'];
   elkeBank(id, token, rest);
 };
 
 var elkeBank = function (id, token, cb) {
   apiCall('/persons/' + id + '/products', {'apikey': consumerKey}, token, cb);
-}
+};
 
 router.post('/banks/all', function (req, rest) {
-  var id = req.param('userId');
-  var token = req.param('token');
+  var id = req.cookies['user'];
+  var token = req.cookies['token'];
+
+  if (!id || !token) {
+    rest.status(401);
+    rest.end();
+    return
+  }
+
   var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE `type`="ouder" AND ?', {'access.id': id}, function (err, others) {
     eigenBanken(req, function (chunk) {
       var response = {'self': chunk, 'fullAccess': []};
@@ -85,8 +91,8 @@ router.post('/banks/all', function (req, rest) {
 });
 
 router.post('/banks/allOpen', function (req, rest) {
-  var id = req.param('userId');
-  var token = req.param('token');
+  var id = req.cookies['user'];
+  var token = req.cookies['token'];
   var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE (`type`="ouder" OR `type`="kind") AND ?', {'access.id': id}, function (err, others) {
     var response = {'fullAccess': []};
     addFulls(others, response, rest);
@@ -107,7 +113,8 @@ var addFulls = function (others, response, rest) {
 };
 
 router.post('/transactions', function (req, rest) {
-  var id = req.param('userId');
+  var id = req.cookies['user'];
+  var token = req.cookies['token'];
   var bank = req.param('bankId');
 
   token(id, function (token) {
