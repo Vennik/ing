@@ -5,7 +5,8 @@ define [
   'object/ButtonGroup'
   'object/AddButton'
   'object/ClearButton'
-], (Div, Image, Element, ButtonGroup, AddButton, ClearButton) ->
+  'object/TransactionButton'
+], (Div, Image, Element, ButtonGroup, AddButton, ClearButton, TransactionButton) ->
   class Control extends Div
     constructor: (@visual) ->
       super()
@@ -18,3 +19,4 @@ define [
       buttonGroup.append new AddButton @visual
       buttonGroup.append new ClearButton @visual
       @append buttonGroup
+      @append new TransactionButton
