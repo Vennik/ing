@@ -1,5 +1,5 @@
 define [
-  '../../dist/scripts/object/Element'
+  'object/Element'
   'object/RequestItem'
 ], (Element, RequestItem) ->
   class RequestList extends Element
