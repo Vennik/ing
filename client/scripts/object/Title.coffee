@@ -1,5 +1,5 @@
 define [
-  'object/Element'
+  '../../dist/scripts/object/Element'
 ], (Element) ->
   class Div extends Element
     constructor: (label)->
