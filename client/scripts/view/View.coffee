@@ -37,6 +37,10 @@ define [
         .done (data) ->
           vis.update(JSON.parse(data.self));
 
+      if @state == "login"
+        @empty()
+        @append new Login @
+
       if @state == "account"
         @visual.circlesToLeft()
 

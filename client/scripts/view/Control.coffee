@@ -4,7 +4,8 @@ define [
   'object/Element'
   'object/ButtonGroup'
   'object/HomeButton'
-], (Div, Image, Element, ButtonGroup, HomeButton) ->
+  'object/LogoutButton'
+], (Div, Image, Element, ButtonGroup, HomeButton, LogoutButton) ->
   class Control extends Div
     constructor: (@view) ->
       super()
@@ -15,4 +16,5 @@ define [
 
       buttonGroup = new ButtonGroup()
       buttonGroup.append new HomeButton @view
+      buttonGroup.append new LogoutButton @view
       @append buttonGroup
