@@ -26,6 +26,17 @@ define [
         @append @visual
         @append new Control @
 
+        path = window.location.pathname;
+        url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+
+        vis = @visual
+        $.ajax url + "/users/banks/all",
+          dataType: "json"
+          type: "POST"
+          data: {'userId' :11701, 'token' : 'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwMzEyMzksIm5vbmNlIjoiZTY4YWQzOGUtNGI0ZS00MGNkLWFiZDYtMWExMzc0NzMwODI1IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJVSUQxMTcwMSIsImp0aSI6IjhiMTc1ZDdhLWNjZGItNDQyZC1iNTczLWMxODlkMTcwZGFkZCIsImlhdCI6MTQxNTgwODQ5Mn0.QM3tyTRnZnAerZWpntiv0-BB0xdpZIcK1_Xcnn52cwA'}
+        .done (data) ->
+          vis.update(JSON.parse(data.self));
+
       if @state == "account"
         @visual.circlesToLeft()
 
@@ -40,16 +51,8 @@ define [
         container.append new Title('Transactions')
         container.append new TransactionList
         @visual.append container
+
       if state == "main"
-        path = window.location.pathname;
-        url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
-
-        $.ajax url + "/users/banks/all",
-          type: "POST"
-          data: {'userId' :11701, 'token' : 'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwMzEyMzksIm5vbmNlIjoiZTY4YWQzOGUtNGI0ZS00MGNkLWFiZDYtMWExMzc0NzMwODI1IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJVSUQxMTcwMSIsImp0aSI6IjhiMTc1ZDdhLWNjZGItNDQyZC1iNTczLWMxODlkMTcwZGFkZCIsImlhdCI6MTQxNTgwODQ5Mn0.QM3tyTRnZnAerZWpntiv0-BB0xdpZIcK1_Xcnn52cwA'}
-        .done (data) ->
-          console.log data
-
         @visual.circlesToMain()
         @visual
         .find ".listcontainer"

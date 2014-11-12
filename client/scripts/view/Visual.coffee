@@ -9,22 +9,6 @@ define [
 
       @circles = []
 
-      circle = new Circle "René Vennik", "8414495"
-      @circles.push circle
-      @append circle
-
-      circle = new Circle "René Vennik", "8414495"
-      @circles.push circle
-      @append circle
-
-      circle = new Circle "René Vennik", "8414495"
-      @circles.push circle
-      @append circle
-
-      circle = new Circle "Test gebruiker", "8414495"
-      @circles.push circle
-      @append circle
-
       @hammer
           preventDefault: true
       .on "pan", (e) =>
@@ -38,3 +22,14 @@ define [
       for circle in @circles
         do (circle) ->
           circle.setMain _i
+
+    update: (data) ->
+      for item in @circles
+        item.remove()
+
+      @circles = []
+      for item in data.list
+        console.log item
+        circle = new Circle item.customerDescription.split(",").reverse().join(" "), item.iban
+        @circles.push circle
+        @append circle
