@@ -35,7 +35,7 @@ define [
           type: "POST"
           data: {'userId': $.cookie("user"), 'token' : $.cookie("token")}
         .done (data) ->
-          vis.update(JSON.parse(data.self));
+          vis.update(data);
 
       if @state == "login"
         @empty()

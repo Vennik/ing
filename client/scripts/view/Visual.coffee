@@ -29,8 +29,18 @@ define [
         item.remove()
 
       @circles = []
-      for item in data.list
-        console.log item
+
+      own = JSON.parse data.self
+      other = data.fullAccess
+
+      for item in own.list
         circle = new Circle item.customerDescription.split(",").reverse().join(" "), item.iban, @view
         @circles.push circle
         @append circle
+
+      for item in other
+        accounts = JSON.parse item.banks
+        for account in accounts.list
+          circle = new Circle account.customerDescription.split(",").reverse().join(" "), account.iban, @view
+          @circles.push circle
+          @append circle

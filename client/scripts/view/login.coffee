@@ -25,16 +25,15 @@ define [
 
         if(token.length > 0)
 
-          el = @;
           $.ajax @url + "/users/login",
             dataType: "json"
             type: "POST"
             data:
               'token': token
-          .done (data) ->
+          .done (data) =>
             console.log data
             if !data.userid
-              el.reset()
+              @reset()
             else
               $.cookie "user", data.userid
               $.cookie "token", token
