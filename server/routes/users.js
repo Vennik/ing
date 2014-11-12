@@ -97,12 +97,29 @@ var addFulls = function (others, response, rest) {
   }
 };
 
-router.post('/transactions', function(req, rest){
-  var id =  req.param('userId');
+router.post('/transactions', function (req, rest) {
+  var id = req.param('userId');
   var bank = req.param('bankId');
 
   token(id, function(token) {
     apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, token, rest.send);
+  });
+});
+
+router.post('/transaction/request', function (req, rest) {
+  var van = req.param('van');
+  console.log(van);
+  var naar = req.param('naar');
+  var vaniban = req.param('vaniban');
+  var naariban = req.param('naariban');
+  var bedrag = req.param('bedrag');
+  var note = req.param('notitie');
+  var sql = connection.query('INSERT INTO `verzoeken` (van, naar, vanIban, naarIban, bedrag, notitie) VALUES (?,?,?,?,?,?);', [van, naar, vaniban, naariban, bedrag, note], function (err, others) {
+    connection.query('SELECT max(tid) AS "max" FROM `verzoeken`', function (err, others) {
+      console.log(others);
+      rest.send(JSON.stringify({'tid':others[0].max}));
+      console.log(err);
+    })
   });
 });
 
