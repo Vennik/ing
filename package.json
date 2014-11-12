@@ -23,7 +23,7 @@
     "serve-favicon": "~2.1.3"
   },
   "scripts": {
-    "install": "bower install && cd client && grunt",
+    "postinstall": "bower install && cd client && grunt",
     "start": "node ./server/bin/www"
   }
 }
