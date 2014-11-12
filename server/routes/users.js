@@ -55,13 +55,13 @@ router.get('/banks/:id', function (req, rest) {
     });
   });
   request.end();
-
-
 });
 
-router.get('/login', function (req, res) {
+
+router.post('/login', function (req, res) {
   var token = req.param('token');
-  login(token, new function (id) {
+  console.log(token);
+  login(token, function (id) {
     if (id >= 0) {
       res.send(JSON.stringify({'status': 'ok', 'userid': id}));
     } else {
@@ -96,16 +96,17 @@ var login = function (token, rest) {
   };
   var req = http.request(options, function (res) {
     if (res.statusCode != 200) {
-      return rest(-1);
+      rest(-1);
+      return;
     }
     res.setEncoding('utf8');
     res.on('data', function (chunk) {
       var body = JSON.parse(chunk);
       var query = connection.query('UPDATE `tokens` SET ? WHERE ?', [
         {'token': token},
-        {'id': id}
+        {'id': body.userId}
       ], function (err, result) {
-        rest(id);
+        rest(body.userId);
       });
     });
   });
