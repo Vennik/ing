@@ -16,7 +16,7 @@ define [
 
       @click () =>
         @view.visual.addClass "loading"
-        $.ajax "/users/transactions"
+        $.ajax "/users/transactions",
           data:
             'bankId': @account
         .done (data) =>
