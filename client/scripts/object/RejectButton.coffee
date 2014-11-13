@@ -9,9 +9,10 @@ define [
       @click () =>
         if confirm "Are you sure you want to decline to this request?"
           @view.visual.addClass "loading"
-          $.ajax "/users/transaction/del",
+          $.ajax "/users/requests/delete",
             data: {tid: @transactionID}
           .done (data) =>
+            console.log data
             if data
               @parent().parent()
               .slideUp 200, () ->
