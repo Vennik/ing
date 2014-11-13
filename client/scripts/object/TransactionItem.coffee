@@ -52,9 +52,11 @@ define [
       @prepend @actionGroup
 
       @.find ".request-form"
-      .submit (e) ->
+      .submit (e) =>
         e.preventDefault()
         if confirm "Are you sure?"
           $.ajax "/users/requests/create",
-            data: $(@).serializeArray()
-          .done (data) ->
+            data: $(@).find(".request-form").serializeArray()
+          .done (data) =>
+            @find ".drop"
+            .hide()
