@@ -62,6 +62,19 @@ router.post('/banks/own', function (req, rest) {
   });
 });
 
+router.post('/transaction/del', function (req, rest) {
+  connection.query('DELETE FROM `verzoeken` WHERE ?', {'tid': req.param('tid')}, function (err, res) {
+    rest.send(err == null);
+  });
+});
+
+router.post('transaction/vraag', function (req, rest){
+  var id = req.cookies['user'];
+  connection.query('SELECT * FROM `verzoeken` WHERE ?', {'naar': id}, function(err, res){
+    rest.send(res);
+  });
+});
+
 var eigenBanken = function (req, rest) {
   var id = req.cookies['user'];
   var token = req.cookies['token'];
