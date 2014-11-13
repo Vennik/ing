@@ -16,5 +16,5 @@ define [
 
       @actionGroup = new ActionGroup
       @actionGroup.append new AcceptButton @view
-      @actionGroup.append new RejectButton @view
+      @actionGroup.append new RejectButton @view, 123
       @prepend @actionGroup
