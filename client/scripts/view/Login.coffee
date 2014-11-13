@@ -23,7 +23,7 @@ define [
 
         token = result['token_type'] + ' ' + result['access_token']
 
-        if(token.length > 0)
+        if(result['token_type'] && result['access_token'])
 
           $.ajax @url + "/users/login",
             dataType: "json"

@@ -167,18 +167,12 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.post('/create/:id', function (req, res) {
-  var query = connection.query('INSERT INTO `tokens` SET ? ', {id: req.param('id'), token: req.body.token}, function (err, result) {
-    console.log(err);
-    res.send();
-  })
-});
-
 
 var login = function (token, rest) {
-  apiCall('/me', {'apikey': consumerKey}, token, function (data) {
+  console.log(token);
+  apiCall('/me', {}, token, function (data) {
     var body = JSON.parse(data);
-    console.log(token);
+
     connection.query('DELETE FROM `tokens` WHERE ?', {'id': body.userId}, function (err, result) {
       connection.query('INSERT INTO `tokens` VALUES (?,?) ', [body.userId, token],
         function (err, result) {
@@ -188,5 +182,13 @@ var login = function (token, rest) {
     });
   });
 };
+
+
+router.post('/create/:id', function (req, res) {
+  var query = connection.query('INSERT INTO `tokens` SET ? ', {id: req.param('id'), token: req.body.token}, function (err, result) {
+    console.log(err);
+    res.send();
+  })
+});
 
 module.exports = router;
