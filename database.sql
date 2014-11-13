@@ -20,59 +20,67 @@ USE `ing`;
 --
 -- Table structure for table `access`
 --
-
 DROP TABLE IF EXISTS `access`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `access` (
   `id` int(11) unsigned NOT NULL,
   `target` int(11) unsigned NOT NULL,
   `type` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`id`,`target`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `access`
---
 
 LOCK TABLES `access` WRITE;
 /*!40000 ALTER TABLE `access` DISABLE KEYS */;
-INSERT INTO `access` VALUES (11701,11703,'ouder'),(11701,11704,'ouder'),(11701,11705,'ouder'),(11702,11703,'ouder'),(11702,11704,'ouder'),(11702,11705,'ouder'),(11703,11701,'kind'),(11703,11702,'kind'),(11704,11701,'kind'),(11704,11702,'kind'),(11705,11701,'kind'),(11705,11702,'kind');
+
+INSERT INTO `access` (`id`, `target`, `type`)
+VALUES
+  (11701,11703,'ouder'),
+  (11701,11704,'ouder'),
+  (11701,11705,'ouder'),
+  (11702,11703,'ouder'),
+  (11702,11704,'ouder'),
+  (11702,11705,'ouder'),
+  (11703,11701,'kind'),
+  (11703,11702,'kind'),
+  (11704,11701,'kind'),
+  (11704,11702,'kind'),
+  (11705,11701,'kind'),
+  (11705,11702,'kind');
+
 /*!40000 ALTER TABLE `access` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `tokens`
---
+
+# Dump of table tokens
+# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `token` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11705 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tokens`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `tokens` WRITE;
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
-INSERT INTO `tokens` VALUES (11701,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNzA3NDcsIm5vbmNlIjoiZTM1ZDc4MDktMTczYy00OWUyLThjMjctNDAwM2YzM2Q3MzM4IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMSIsImp0aSI6IjM4MGU3MTE4LWUyYTItNGQ1Zi1iYTRmLTY3OGI2N2E1NTFkOCIsImlhdCI6MTQxNTg0Nzk5OX0.VKyi17uaP5ep2_7la-sysz9hNZiMGjtVPZsHz79ScqA'),(11702,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNjg1MjgsIm5vbmNlIjoiYTNhNzQ0YmUtN2M4My00ODRmLWIzMTQtN2VkMTc4ZmFiNTIyIiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMiIsImp0aSI6IjQ4NWY5NDZlLTIwMTktNDQ5Ni1iZTljLTIwY2EzYTYyYTIyNiIsImlhdCI6MTQxNTg0NTc4MX0.kPisrbuOb3VutX8vGWppoL2Abd_U9skaCBLhTNnk9SM'),(11703,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNjg5NzIsIm5vbmNlIjoiY2ZkYWU4MGItM2E0Yi00MTM0LTgzZGYtODE4NGVkYmM1MDU5IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMyIsImp0aSI6IjFlNzEyZmI4LTM3M2EtNDkxYS05YzhlLTJiNzUxZmQ4MWQ4NyIsImlhdCI6MTQxNTg0NjIyNH0.lePLhUAcPRg9JXY5vqBY_mQlj2CECTbCEWcvGgs4A_s'),(11704,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNjIxOTIsIm5vbmNlIjoiMTY2ZTBiOGEtN2ExYS00NGIyLTlkMzAtMjU1NmY3YmFjMTA0IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwNCIsImp0aSI6ImI1NjQ2YzMwLWM5MDEtNGRmNy05NGFjLTAyMTMzMjlmZmM4NiIsImlhdCI6MTQxNTgzOTQ0NX0.bYjxCGEPpvTUxdoCFG8orzzO-j5YH-TS0d54b0-FrOQ');
+
+INSERT INTO `tokens` (`id`, `token`)
+VALUES
+  (11701,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNzA3NDcsIm5vbmNlIjoiZTM1ZDc4MDktMTczYy00OWUyLThjMjctNDAwM2YzM2Q3MzM4IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMSIsImp0aSI6IjM4MGU3MTE4LWUyYTItNGQ1Zi1iYTRmLTY3OGI2N2E1NTFkOCIsImlhdCI6MTQxNTg0Nzk5OX0.VKyi17uaP5ep2_7la-sysz9hNZiMGjtVPZsHz79ScqA'),
+  (11702,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwODgxMzYsIm5vbmNlIjoiMGI0MTlkNDEtMTM4OS00NTIzLThjOTMtZmRmZmQ2NDVlZGQ3IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMiIsImp0aSI6ImY3YmZjOWJjLTMxMDQtNGRlYy04YTU0LTMyY2FkZDk4MjVkOCIsImlhdCI6MTQxNTg2NTM4OX0.wNCkBNrCYP49sQ83nUE9Ab-DWVQHKr954fxduQbLHto'),
+  (11703,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwODgzODYsIm5vbmNlIjoiYjZjNzYyYzEtMTI3OC00ZGEzLWE4ZjAtODUyOTFjMjk0M2YyIiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwMyIsImp0aSI6IjQwNmJmOTNmLTc5ZTctNGQxZS1iNjRhLTMyZTNjYjk3Y2M4MCIsImlhdCI6MTQxNTg2NTYzOX0.82U77cCyECrFBVbtGfJWOE4KLmtepBzIe9EXfX8c79Y'),
+  (11704,'Bearer eyJhbGciOiJIUzI1NiIsImN0eSI6InRleHRcL3BsYWluIn0.eyJleHAiOjE0MTUwNjIxOTIsIm5vbmNlIjoiMTY2ZTBiOGEtN2ExYS00NGIyLTlkMzAtMjU1NmY3YmFjMTA0IiwiYXVkIjpbImNsaWVudF9pZCJdLCJpc3MiOiJ1aWQxMTcwNCIsImp0aSI6ImI1NjQ2YzMwLWM5MDEtNGRmNy05NGFjLTAyMTMzMjlmZmM4NiIsImlhdCI6MTQxNTgzOTQ0NX0.bYjxCGEPpvTUxdoCFG8orzzO-j5YH-TS0d54b0-FrOQ');
+
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `verzoeken`
---
+
+# Dump of table verzoeken
+# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `verzoeken`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `verzoeken` (
   `tid` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `van` int(11) DEFAULT NULL,
@@ -81,19 +89,24 @@ CREATE TABLE `verzoeken` (
   `naarIban` varchar(18) DEFAULT NULL,
   `bedrag` int(11) DEFAULT NULL,
   `notitie` text,
+  `naam` text,
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `verzoeken`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `verzoeken` WRITE;
 /*!40000 ALTER TABLE `verzoeken` DISABLE KEYS */;
-INSERT INTO `verzoeken` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,NULL,NULL),(4,11702,11703,'NL11INGX0005172905','NL17INGX0003090838',1,'dingen');
+
+INSERT INTO `verzoeken` (`tid`, `van`, `naar`, `vanIban`, `naarIban`, `bedrag`, `notitie`, `naam`)
+VALUES
+  (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+  (2,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+  (3,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+  (4,11702,11703,'NL11INGX0005172905','NL17INGX0003090838',1,'dingen',NULL),
+  (5,11703,11702,'NL17INGX0003090838','NL11INGX0005172905',4000,'','Jeroen van Berkel');
+
 /*!40000 ALTER TABLE `verzoeken` ENABLE KEYS */;
 UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
