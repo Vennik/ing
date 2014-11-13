@@ -18,5 +18,8 @@ define [
           date = new Date(transaction.accountingDate.datetime)
           date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
           @append new TransactionItem @id, name, transaction, names
+      .error (error) =>
+        console.log error
+        @before '<div class="alert alert-danger" role="alert">Permission Denied</div>'
 
         @removeClass "loading"
