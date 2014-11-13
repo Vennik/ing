@@ -12,6 +12,11 @@ define [
             <span class='date'>#{date}</span><span>#{from}</span><span class='glyphicon glyphicon-arrow-right'></span><span>#{to}</span><br />#{description}
             "
 
+      if $('.me .name').html() == from
+        @find('.date').addClass('alert alert-danger');
+      else
+        @find('.date').addClass('alert alert-info');
+
       @prepend "<div class='panel panel-default'>€ #{(amount/100).toFixed(2)}</div>"
 
       @actionGroup = new ActionGroup
