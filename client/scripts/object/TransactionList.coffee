@@ -15,12 +15,14 @@ define [
       .done (data) =>
         console.log data
         if data.fullAccess[0]
-          products = JSON.parse(data.fullAccess[0].products)
-          length = products.list.length
-          for account in products.list
-            if (account.id)[0] != 'T'
-              console.log account
-              names.push([account.customerDescription, account.id, data.fullAccess[0].person])
+          for person in data.fullAccess
+            products = JSON.parse(person.products)
+
+            length = products.list.length
+            for account in products.list
+              if (account.id)[0] != 'T'
+                console.log account
+                names.push([account.customerDescription, account.id, data.fullAccess[0].person])
 
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
