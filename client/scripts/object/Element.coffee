@@ -1,6 +1,5 @@
 define [
-  'jquery'
-], (jQuery) ->
+], () ->
   class Element extends jQuery
     constructor: (selector, context) ->
       # When selector is a string and not an html tag:

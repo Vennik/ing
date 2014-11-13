@@ -15,7 +15,7 @@ define [
       @attr "title", "€ " + @balance
       @attr "data-toggle", "tooltip"
       @attr "data-placement", "bottom"
-      #@tooltip()
+      @tooltip()
 
       path = window.location.pathname;
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
