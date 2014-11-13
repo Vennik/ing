@@ -48,43 +48,6 @@ router.post('/all', function (req, res) {
   })
 });
 
-
-//router.post('/all', function (req, rest) {
-//  var id = req.cookies['user'];
-//  var token = req.cookies['token'];
-//
-//  connection.query('SELECT DISTINCT secondparent.id FROM ing.access parent ' +
-//    'INNER JOIN ing.access child ON parent.id=child.target ' +
-//    'INNER JOIN ing.access secondparent ON child.id=secondparent.target ' +
-//    'WHERE secondparent.id<>parent.id AND ? UNION SELECT target FROM access WHERE ?', [{'parent.id': id},{'id': id}], function(err, results) {
-//    console.log(results)
-//    eigenBanken(req, function (chunk) {
-//      var response = {'self': chunk, 'fullAccess': []};
-//      addFulls(results, response, rest);
-//    });
-//  });
-//
-////  connection.query('SELECT `target`, `token` FROM `access` ' +
-////    'JOIN `tokens` ON access.target=tokens.id ' +
-////    'WHERE `type`="ouder" AND ?', {'access.id': id}, function (err, results) {
-////    eigenBanken(req, function (chunk) {
-////      var response = {'self': chunk, 'fullAccess': []};
-////      addFulls(results1.concat(results2), response, rest);
-////    });
-////  });
-//});
-
-router.post('/allOpen', function (req, rest) {
-  checkLogin(req, rest, 10, function () {
-    var id = req.cookies['user'];
-    var token = req.cookies['token'];
-    connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE (`type`="ouder" OR `type`="kind") AND ?', {'access.id': id}, function (err, others) {
-      var response = {'fullAccess': []};
-      addFulls(others, response, rest);
-    });
-  });
-});
-
 var addFulls = function (others, response, rest) {
   if (others.length == 0) {
     rest.send(JSON.stringify(response))

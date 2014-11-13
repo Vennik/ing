@@ -3,7 +3,7 @@ define [
   'object/TransactionItem'
 ], (Element, TransactionItem) ->
   class TransactionList extends Element
-    constructor: (@id, @account, @data) ->
+    constructor: (@id, name) ->
       super document.createElement "ul"
 
       @attr "id", "transaction-list"
@@ -17,6 +17,6 @@ define [
         for transaction in data.list
           date = new Date(transaction.accountingDate.datetime)
           date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-          @append new TransactionItem @id, @account, transaction, names
+          @append new TransactionItem @id, name, transaction, names
 
         @removeClass "loading"

@@ -34,7 +34,7 @@ define [
         $.ajax "/users/products/all"
           .done (data) =>
             @visual.update(data)
-          .always () =>
+          .always =>
             @visual.removeClass "loading"
 
       if @state == "login"
@@ -57,7 +57,7 @@ define [
         .remove()
 
 
-    toggleTransactions: (id, account, data) ->
+    toggleTransactions: (id, name) ->
       if @state == "account"
         @visual
         .find ".listcontainer"
@@ -67,8 +67,8 @@ define [
         container.addClass "listcontainer"
         container.append new Title('Requests')
         container.append new RequestList @
-        container.append new Title('Transactions')
-        container.append new TransactionList id, account, data
+        container.append new Title('Transactions of ' + name)
+        container.append new TransactionList id, name
         @visual.append container
 
       if @state == "main"

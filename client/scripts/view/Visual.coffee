@@ -23,10 +23,6 @@ define [
           .setMain _i
           .removeClass "active"
 
-
-    updateTransactions: (data) ->
-
-
     update: (data) ->
       console.log data
       for item in @circles
