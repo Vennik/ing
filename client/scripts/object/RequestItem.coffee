@@ -5,7 +5,7 @@ define [
   'object/RejectButton'
 ], (Element, ActionGroup, AcceptButton, RejectButton) ->
   class RequestItem extends Element
-    constructor: (description, account, date, amount, @view) ->
+    constructor: (tid, description, account, date, amount, @view) ->
       super document.createElement "li"
       @addClass "list-group-item clearfix"
       @html "
@@ -16,5 +16,5 @@ define [
 
       @actionGroup = new ActionGroup
       @actionGroup.append new AcceptButton @view
-      @actionGroup.append new RejectButton @view, 123
+      @actionGroup.append new RejectButton @view, tid
       @prepend @actionGroup

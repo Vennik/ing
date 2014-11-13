@@ -13,3 +13,4 @@ define [
           for request in data.requests
             @append new RequestItem request.notitie, request.naarIban, '13-11-2014  ', request.bedrag, @view
           @removeClass "loading"
+
