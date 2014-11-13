@@ -38,6 +38,38 @@ router.post('/transactions', function (req, rest) {
   });
 });
 
+router.post('/transactions/:id', function (req, res) {
+  var clientId = req.param('id');
+  var id = req.cookies['user'];
+  if (clientId != id) {
+    checkLogin(req, res, 5, function () {
+      connection.query('SELECT token FROM tokens INNER JOIN access ON access.id=tokens.id WHERE access.type<5 AND ?', {'tokens.id': clientId}, function (err, result) {
+        if (!err && result.length) {
+          var token = result[0].token;
+          apiCall('/persons/' + clientId + '/transactions', {}, token, function (data) {
+            res.send(data);
+            res.end();
+          });
+        } else { // other one is also a parent.
+          res.status(403);
+          res.send(JSON.stringify({'status': 'nok'}));
+          res.end();
+        }
+      });
+    }, function() {
+      res.status(403);
+      res.send(JSON.stringify({'status': 'nok'}));
+      res.end();
+    });
+  } else {
+    var token = req.cookies['token'];
+    apiCall('/persons/' + id + '/transactions', {}, token, function (data) {
+      res.send(data);
+      res.end();
+    });
+  }
+});
+
 
 router.post('/login', function (req, res) {
   var token = req.param('token');

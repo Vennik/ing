@@ -5,8 +5,10 @@ var checkLogin = require('../control/checklogin');
 
 var connection = require('../control/mysql');
 
+var OUDER = 10, KIND = 1;
+
 router.post('/create', function (req, res) {
-  checkLogin(req, res, function() {
+  checkLogin(req, res, KIND, function() {
     var van = req.param('van');
     var naar = req.param('naar');
     var vaniban = req.param('vaniban');
@@ -23,7 +25,7 @@ router.post('/create', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-  checkLogin(req, res, function() {
+  checkLogin(req, res, KIND, function() {
     connection.query('DELETE FROM `verzoeken` WHERE ?', {'tid': req.param('tid')}, function (err, result) {
       res.send(JSON.stringify(err == null)).end();
     });
@@ -31,7 +33,7 @@ router.post('/delete', function (req, res) {
 });
 
 router.post('/all', function (req, res){
-  checkLogin(req, res, function() {
+  checkLogin(req, res, KIND, function() {
     var id = req.cookies['user'];
     connection.query('SELECT * FROM `verzoeken` WHERE ?', {'naar': id}, function(err, result){
       res.send(JSON.stringify({'requests': result}));
@@ -41,7 +43,7 @@ router.post('/all', function (req, res){
 });
 
 router.get('/:id', function (req, res) {
-  checkLogin(req, res, function() {
+  checkLogin(req, res, KIND, function() {
     var user = req.cookies['user'];
     var id = req.param('id');
     connection.query('SELECT * FROM `verzoeken` WHERE ? AND ? LIMIT 1', [{'tid': id}, {'naar': 11701}], function (err, result) {

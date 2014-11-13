@@ -1,8 +1,9 @@
 define [
   'object/Div'
   'object/Circle'
+  'object/MyCircle'
   'view/View'
-], (Div, Circle, View) ->
+], (Div, Circle, MyCircle, View) ->
   class Visual extends Div
     constructor: (@view) ->
       super()
@@ -33,17 +34,15 @@ define [
 
       @circles = []
 
-      own = JSON.parse data.self
-      other = data.fullAccess
+      own = data.self
+      others = data.others
 
-      for item in own.list
-        circle = new Circle item.customerDescription.split(",").reverse().join(" "), $.cookie('user'), item.iban, item.availableBalance.value, @view
+
+      circle = new MyCircle own.name.split(",").reverse().join(" "), own.id, own.level, @view
+      @circles.push circle
+      @append circle
+
+      for other in others
+        circle = new Circle other.name.split(",").reverse().join(" "), other.id, other.level, @view
         @circles.push circle
         @append circle
-
-      for item in other
-        accounts = JSON.parse item.products
-        for account in accounts.list
-          circle = new Circle account.customerDescription.split(",").reverse().join(" "), item.person, account.iban, account.availableBalance.value, @view
-          @circles.push circle
-          @append circle
