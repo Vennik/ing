@@ -12,7 +12,7 @@ define [
             <span class='date'>#{date}</span><strong>#{description}</strong><br />#{account}
             "
 
-      @prepend "<div class='panel panel-default'>€ #{amount/100}</div>"
+      @prepend "<div class='panel panel-default'>€ #{(amount/100).toFixed(2)}</div>"
 
       @actionGroup = new ActionGroup
       @actionGroup.append new AcceptButton
