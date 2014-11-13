@@ -18,6 +18,8 @@ define [
       @click () =>
         @view.visual.addClass "loading"
         $.ajax "/users/transactions"
+          data:
+            'bankId': @account
         .done (data) =>
           console.log(data.list)
           @view.toggleTransactions(data.list)
