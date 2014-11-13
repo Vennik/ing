@@ -25,8 +25,12 @@ router.post('/delete', function (req, res) {
   checkLogin(req, function() {
     connection.query('DELETE FROM `verzoeken` WHERE ?', {'tid': req.param('tid')}, function (err, result) {
       res.send(JSON.stringify(err == null));
+      res.end();
     });
-  })
+  }, function() {
+    res.status(401);
+    res.end();
+  });
 });
 
 router.post('/all', function (req, res){
@@ -35,7 +39,10 @@ router.post('/all', function (req, res){
     connection.query('SELECT * FROM `verzoeken` WHERE ?', {'naar': id}, function(err, result){
       console.log(result);
       res.send(result);
+      res.end();
     });
+  }, function () {
+    res.end();
   });
 });
 
