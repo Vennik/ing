@@ -22,7 +22,7 @@ var apiCall = function (location, query, token, cb) {
       data += chunk;
     });
     res.on('end', function () {
-        cb(data);
+      cb(data);
     });
   }).end();
 };
@@ -118,7 +118,7 @@ router.post('/transactions', function (req, rest) {
   var bank = req.param('bankId');
 
   token(id, function (tok) {
-    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, tok, function(data) {
+    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, tok, function (data) {
       rest.send(data);
     });
   });
@@ -172,11 +172,13 @@ router.post('/create/:id', function (req, res) {
 var login = function (token, rest) {
   apiCall('/me', {'apikey': consumerKey}, token, function (data) {
     var body = JSON.parse(data);
-    connection.query('UPDATE `tokens` SET ? WHERE ?', [
-      {'token': token},
-      {'id': body.userId}
-    ], function (err, result) {
-      rest(body.userId);
+    console.log(token);
+    connection.query('DELETE FROM `tokens` WHERE ?', {'id': body.userId}, function (err, result) {
+      connection.query('INSERT INTO `tokens` VALUES (?,?) ', [body.userId, token],
+        function (err, result) {
+          console.log(err);
+          rest(body.userId);
+        });
     });
   });
 };
