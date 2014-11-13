@@ -1,7 +1,7 @@
 var apiCall = require('./apicall');
 var connection = require('./mysql');
 
-module.exports = function (req, yes, no) {
+module.exports = function (req, res, yes, no) {
   var token = req.cookies['token'];
   var id = req.cookies['user'];
   apiCall('/me', {}, token, function (data) {
@@ -11,8 +11,11 @@ module.exports = function (req, yes, no) {
       if (yes)
         yes();
     } else {
-      if (no)
+      if (no) {
         no();
+      } else {
+        res.status(403).end();
+      }
     }
   })
 }
