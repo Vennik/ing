@@ -19,6 +19,7 @@ define [
           <div class='form-group'>
             <div class='input-group'>
               <div class='input-group-addon'><span class='glyphicon glyphicon-user'></span></div>
+              <input type='hidden' name='naam' value=''>
               <input type='hidden' name='van' value=0>
               <input type='hidden' name='naar' value='#{@id}'>
               <input type='hidden' name='bedrag' value='#{transaction.amount.value*100}'>
@@ -41,10 +42,13 @@ define [
         @find("select").append("<option id='#{name[2]}' value='#{name[1]}'>#{name[0].split(',').reverse().join(' ')}</option>")
 
       fromInput = @find('[name="van"]')
+      nameInput = @find('[name="naam"]')
       @find("select").on "change", =>
         @find "select option:selected"
         .each ->
           fromInput.val($(@).attr("id"))
+          console.log $(@).text()
+          nameInput.val($(@).text())
       @prepend "<div class='panel panel-default'>€ #{parseFloat(transaction.amount.value).toFixed(2)}</div>"
 
       @actionGroup = new ActionGroup
