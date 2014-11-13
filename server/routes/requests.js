@@ -15,9 +15,11 @@ router.post('/create', function (req, res) {
     var note = req.param('notitie');
     var sql = connection.query('INSERT INTO `verzoeken` (van, naar, vanIban, naarIban, bedrag, notitie) VALUES (?,?,?,?,?,?);', [van, naar, vaniban, naariban, bedrag, note], function (err, result) {
       res.send(JSON.stringify({'status': 'ok', 'tid': result.insertId}));
+      res.end();
     });
   }, function() {
     res.send(JSON.stringify({'status': 'nok'}));
+    res.end();
   })
 });
 
@@ -42,6 +44,7 @@ router.post('/all', function (req, res){
       res.end();
     });
   }, function () {
+    res.status(401);
     res.end();
   });
 });
