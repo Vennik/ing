@@ -17,10 +17,10 @@ define [
 
       #@balance = parseFloat(@balance).toFixed(2);
 
-      @attr "title", "€ " + @balance
-      @attr "data-toggle", "tooltip"
-      @attr "data-placement", "bottom"
-      @tooltip()
+#      @attr "title", "€ " + @balance
+#      @attr "data-toggle", "tooltip"
+#      @attr "data-placement", "bottom"
+#      @tooltip()
 
       @click () =>
         @parent().find("> .active").removeClass "active"
