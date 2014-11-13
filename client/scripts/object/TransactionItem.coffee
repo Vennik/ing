@@ -30,7 +30,7 @@ define [
         </form>
       </div>"
       for name in names
-        @find("select").append("<option>#{name}</option>")
+        @find("select").append("<option>#{name[0]}</option>")
 
       @prepend "<div class='panel panel-default'>€ #{parseFloat(transaction.amount.value).toFixed(2)}</div>"
 

@@ -18,7 +18,8 @@ define [
           length = products.list.length
           console.log(products)
           for account in products.list
-            names[_i] = account.customerDescription
+            if (account.id)[0] != 'T'
+              names.push([account.customerDescription, account.id])
 
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
