@@ -159,6 +159,17 @@ router.post('/transaction/request', function (req, rest) {
   });
 });
 
+router.post('/products/:id', function (req, res) {
+  var token = req.cookies['token'];
+  var user = req.cookies['user'];
+
+  var iban = req.param('id');
+
+  apiCall('/products/' + iban, {'apikey': consumerKey}, token, function(data) {
+    res.send(data);
+  });
+});
+
 router.post('/login', function (req, res) {
   var token = req.param('token');
   console.log(token);
