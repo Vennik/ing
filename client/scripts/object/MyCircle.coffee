@@ -10,4 +10,4 @@ define [
       @on 'click', () =>
         @parent().find("> .active").removeClass "active"
         @addClass "active"
-        @view.toggleTransactions @id, @account
+        @view.toggleTransactions @id, @name

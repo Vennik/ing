@@ -4,7 +4,7 @@ define [
   'view/View'
 ], (A, Element, View) ->
   class Circle extends A
-    constructor: (name, @id, @level, @view) ->
+    constructor: (@name, @id, @level, @view) ->
       super()
 
       @addClass "circle"
@@ -13,7 +13,7 @@ define [
 #      if account[0] == 'T'
 #        @addClass "blue"
 
-      @append new Element "<span class='name'>#{name}</span>"
+      @append new Element "<span class='name'>#{@name}</span>"
 
       #@balance = parseFloat(@balance).toFixed(2);
 
@@ -26,7 +26,7 @@ define [
         @parent().find("> .active").removeClass "active"
         @addClass "active"
         @view.setState "account"
-        @view.toggleTransactions(@id, name)
+        @view.toggleTransactions(@id, @name)
 
 
     setLeft: (index) ->
