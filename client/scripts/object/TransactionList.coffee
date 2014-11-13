@@ -16,7 +16,7 @@ define [
         if data.fullAccess[0]
           products = JSON.parse(data.fullAccess[0].products)
           length = products.list.length
-
+          console.log(products)
           for account in products.list
             names[_i] = account.customerDescription
 
