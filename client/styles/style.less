@@ -1,6 +1,7 @@
 @red: #be1b1b;
 @green: #299c23;
 @orange: #f08231;
+@active: darken(@orange, 12%);
 @white: #fff;
 
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
@@ -44,7 +45,7 @@ body, html {
   right: 300px;
   overflow: auto;
   padding: 20px;
-  &.tranaction-pending {
+  &.transaction-pending {
     overflow: hidden;
   }
   &.loading {
@@ -76,6 +77,9 @@ body, html {
     position: relative;
     overflow: hidden;
     display: table;
+    &.active{
+      background: @active;
+    }
     .transition(top .2s;);
     .name {
       font: 25px/30px 'Bree Serif', 'Arial';

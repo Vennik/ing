@@ -15,6 +15,8 @@ define [
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
       @click () =>
+        @parent().find("> .active").removeClass "active"
+        @addClass "active"
         @view.visual.addClass "loading"
         $.ajax "/users/transactions",
           data:

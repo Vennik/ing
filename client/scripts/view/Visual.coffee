@@ -22,7 +22,9 @@ define [
     circlesToMain: ->
       for circle in @circles
         do (circle) ->
-          circle.setMain _i
+          circle
+          .setMain _i
+          .removeClass "active"
 
 
     updateTransactions: (data) ->

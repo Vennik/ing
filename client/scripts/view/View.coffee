@@ -52,6 +52,7 @@ define [
         .remove()
 
         @visual
+        .removeClass "transaction-pending"
         .find "#accept-transaction"
         .remove()
 

@@ -9,5 +9,5 @@ define [
 
       @click () =>
         @view.visual
-        .addClass "tranaction-pending"
+        .addClass "transaction-pending"
         .append new AcceptTransaction
