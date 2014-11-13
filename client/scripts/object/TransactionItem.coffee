@@ -64,3 +64,8 @@ define [
           .done (data) =>
             @find ".drop"
             .hide()
+            @find ".btn-group .btn"
+            .prop "disabled", true
+            .find "span"
+            .removeClass "glyphicon-share-alt"
+            .addClass "glyphicon-time"
