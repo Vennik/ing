@@ -9,8 +9,7 @@ define [
 
       @addClass "circle"
 
-      @append new Element "<span class='name'>#{@name}</span>"
-      @append new Element "<span class='account'>#{@account}</span>"
+      @append new Element "<span class='name'>#{@name}<br /><span class='account'>#{@account}</span></span>"
 
       path = window.location.pathname;
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
