@@ -5,11 +5,11 @@ define [
   'object/RejectButton'
 ], (Element, ActionGroup, AcceptButton, RejectButton) ->
   class RequestItem extends Element
-    constructor: (tid, description, account, date, amount, @view) ->
+    constructor: (tid, description, from, to, date, amount, @view) ->
       super document.createElement "li"
       @addClass "list-group-item clearfix"
       @html "
-            <span class='date'>#{date}</span><strong>#{description}</strong>#{account}
+            <span class='date'>#{date}</span><span>#{from}</span><span class='glyphicon glyphicon-arrow-right'></span><span>#{to}</span><br />#{description}
             "
 
       @prepend "<div class='panel panel-default'>€ #{(amount/100).toFixed(2)}</div>"

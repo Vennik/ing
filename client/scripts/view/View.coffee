@@ -57,7 +57,7 @@ define [
         .remove()
 
 
-    toggleTransactions: (id, name) ->
+    toggleTransactions: (@id, @name) ->
       if @state == "account"
         @visual
         .find ".listcontainer"
@@ -67,8 +67,8 @@ define [
         container.addClass "listcontainer"
         container.append new Title('My Requests')
         container.append new RequestList @
-        container.append new Title('Transactions of ' + name)
-        container.append new TransactionList id, name, @visual.others
+        container.append new Title('Transactions of ' + @name)
+        container.append new TransactionList @id, @name, @visual.others
         @visual.append container
 
       if @state == "main"
