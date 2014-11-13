@@ -14,6 +14,7 @@ router.post('/create', function (req, res) {
     var bedrag = req.param('bedrag');
     var note = req.param('notitie');
     var sql = connection.query('INSERT INTO `verzoeken` (van, naar, vanIban, naarIban, bedrag, notitie) VALUES (?,?,?,?,?,?);', [van, naar, vaniban, naariban, bedrag, note], function (err, result) {
+      console.log(err);
       res.send(JSON.stringify({'status': 'ok', 'tid': result.insertId})).end();
     });
   }, function() {
