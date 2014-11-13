@@ -11,18 +11,18 @@ define [
       @addClass "list-group"
       names = new Array()
       vis = @visual
-      $.ajax "/users/banks/allOpen"
+      $.ajax "/users/products/allOpen"
       .done (data) =>
         if data.fullAccess[0]
-          banks = JSON.parse(data.fullAccess[0].banks)
-          length = banks.list.length
+          products = JSON.parse(data.fullAccess[0].products)
+          length = products.list.length
 
           i = 0
-          for account in banks.list
+          for account in products.list
             names[i] = account.customerDescription
             i++
 
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
           date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-          @append new TransactionItem transaction.description ?= "", transaction.counterpartProductId, date, transaction.amount.value, names
+          @append new TransactionItem transaction, names

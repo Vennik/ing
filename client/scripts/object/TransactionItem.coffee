@@ -4,13 +4,17 @@ define [
   'object/RequestButton'
 ], (Element, ActionGroup, RequestButton) ->
   class TransactionItem extends Element
-    constructor: (description, account, date, amount, names) ->
+    constructor: (transaction, names) ->
       super document.createElement "li"
+
+      date = new Date(transaction.accountingDate.datetime)
+      date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
 
 
       @addClass "list-group-item clearfix"
       @html "
-      <span class='date'>#{date}</span><strong>#{description}</strong><br />#{account}
+      <span class='date'>#{date}</span><strong>#{transaction.description ?= "No description"}</strong>
+      <br />#{transaction.productId} <span class='glyphicon glyphicon-arrow-right'></span> #{transaction.counterpartProductId}
       <div class='drop'>
         <form class='form-inline'>
           <div class='form-group'>
@@ -27,9 +31,9 @@ define [
       </div>"
       for name in names
         @find("select").append("<option>#{name}</option>")
-      @prepend "<div class='panel panel-default'>€ #{amount}</div>"
+      @prepend "<div class='panel panel-default'>#{transaction.currency.code} #{transaction.amount.value}</div>"
 
 
       @actionGroup = new ActionGroup
-      @actionGroup.append new RequestButton amount
+      @actionGroup.append new RequestButton transaction.amount.value
       @prepend @actionGroup

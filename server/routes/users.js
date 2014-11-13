@@ -56,7 +56,7 @@ var token = function (id, cb) {
 };
 
 
-router.post('/banks/own', function (req, rest) {
+router.post('/products/own', function (req, rest) {
   eigenBanken(req, function (chunk) {
     rest.send(chunk);
   });
@@ -85,7 +85,7 @@ var elkeBank = function (id, token, cb) {
   apiCall('/persons/' + id + '/products', {'apikey': consumerKey}, token, cb);
 };
 
-router.post('/banks/all', function (req, rest) {
+router.post('/products/all', function (req, rest) {
   var id = req.cookies['user'];
   var token = req.cookies['token'];
 
@@ -103,7 +103,7 @@ router.post('/banks/all', function (req, rest) {
   })
 });
 
-router.post('/banks/allOpen', function (req, rest) {
+router.post('/products/allOpen', function (req, rest) {
   var id = req.cookies['user'];
   var token = req.cookies['token'];
   var sql = connection.query('SELECT `target`, `token` FROM `access` JOIN `tokens` ON access.target=tokens.id WHERE (`type`="ouder" OR `type`="kind") AND ?', {'access.id': id}, function (err, others) {
@@ -119,19 +119,24 @@ var addFulls = function (others, response, rest) {
   else {
     var item = others.shift();
     elkeBank(item.target, item.token, function (chunk) {
-      response.fullAccess.push({ person: item.target, banks: chunk});
+      response.fullAccess.push({ person: item.target, products: chunk});
       addFulls(others, response, rest);
     })
   }
 };
 
+// TODO: everyone can do this
 router.post('/transactions', function (req, rest) {
-  var id = req.cookies['user'];
-  var tok = req.cookies['token'];
+  var id = req.param('userId');
+  //var tok = req.cookies['token'];
   var bank = req.param('bankId');
 
+  console.log(id);
+
+  console.log(bank);
+
   token(id, function (tok) {
-    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, tok, function (data) {
+    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'customerProductId': bank}, tok, function (data) {
       rest.send(data);
     });
   });

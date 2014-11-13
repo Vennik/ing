@@ -31,7 +31,7 @@ define [
           dataType: "json"
 
         @visual.addClass "loading"
-        $.ajax "/users/banks/all"
+        $.ajax "/users/products/all"
           .done (data) =>
             @visual.update(data)
           .always () =>

@@ -4,15 +4,12 @@ define [
   'view/View'
 ], (A, Element, View) ->
   class Circle extends A
-    constructor: (@name, @account, @view) ->
+    constructor: (@name, @id, @account, @view) ->
       super()
 
       @addClass "circle"
 
       @append new Element "<span class='name'>#{@name}<br /><span class='account'>#{@account}</span></span>"
-
-      path = window.location.pathname;
-      url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
       @click () =>
         @parent().find("> .active").removeClass "active"
@@ -20,6 +17,7 @@ define [
         @view.visual.addClass "loading"
         $.ajax "/users/transactions",
           data:
+            'userId': @id
             'bankId': @account
         .done (data) =>
           @view.toggleTransactions(data.list)
