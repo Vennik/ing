@@ -14,7 +14,7 @@ define [
       @addClass "list-group-item clearfix"
       @html "
       <span class='date'>#{date}</span><strong>#{transaction.description ?= "No description"}</strong>
-      <br />#{transaction.productId} <span class='glyphicon glyphicon-arrow-right'></span> #{transaction.counterpartProductId}
+      #{transaction.productId} <span class='glyphicon glyphicon-arrow-right'></span> #{transaction.counterpartProductId}
       <div class='drop'>
         <form class='form-inline'>
           <div class='form-group'>

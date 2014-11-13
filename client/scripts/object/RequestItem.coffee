@@ -9,7 +9,7 @@ define [
       super document.createElement "li"
       @addClass "list-group-item clearfix"
       @html "
-            <span class='date'>#{date}</span><strong>#{description}</strong><br />#{account}
+            <span class='date'>#{date}</span><strong>#{description}</strong>#{account}
             "
 
       @prepend "<div class='panel panel-default'>€ #{(amount/100).toFixed(2)}</div>"
