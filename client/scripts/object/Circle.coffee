@@ -16,12 +16,9 @@ define [
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
       @click () =>
-        $.ajax url + "/users/transactions",
+        $.ajax "/users/transactions",
           dataType: "json"
           type: "POST"
-          data:
-            'userId': 11701
-            'bankId': @account
         .done (data) =>
           console.log(data.list)
           @view.toggleTransactions(data.list)

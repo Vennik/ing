@@ -114,11 +114,13 @@ var addFulls = function (others, response, rest) {
 
 router.post('/transactions', function (req, rest) {
   var id = req.cookies['user'];
-  var token = req.cookies['token'];
+  var tok = req.cookies['token'];
   var bank = req.param('bankId');
 
-  token(id, function (token) {
-    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, token, rest.send);
+  token(id, function (tok) {
+    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'consumerProductId': bank}, tok, function(data) {
+      rest.send(data);
+    });
   });
 });
 

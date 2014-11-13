@@ -36,10 +36,10 @@ define [
             vis.update(data)
             console.log data.self
             # download all transactions for the user
-            $.ajax "/users/transactions"
-              .done (data) ->
-                console.log data.self
-                vis.updateTransactions JSON.parse data.self
+#            $.ajax "/users/transactions"
+#              .done (data) ->
+#                console.log data.self
+#                vis.updateTransactions JSON.parse data.self
 
 
       if @state == "login"
