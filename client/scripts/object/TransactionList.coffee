@@ -3,7 +3,7 @@ define [
   'object/TransactionItem'
 ], (Element, TransactionItem) ->
   class TransactionList extends Element
-    constructor: (@account, @data) ->
+    constructor: (@id, @account, @data) ->
       super document.createElement "ul"
 
 
@@ -19,9 +19,10 @@ define [
           length = products.list.length
           for account in products.list
             if (account.id)[0] != 'T'
-              names.push([account.customerDescription, account.id])
+              console.log account
+              names.push([account.customerDescription, account.id, data.fullAccess[0].person])
 
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
           date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-          @append new TransactionItem @account, transaction, names
+          @append new TransactionItem @id, @account, transaction, names

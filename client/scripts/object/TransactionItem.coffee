@@ -4,12 +4,11 @@ define [
   'object/RequestButton'
 ], (Element, ActionGroup, RequestButton) ->
   class TransactionItem extends Element
-    constructor: (@account, transaction, names) ->
+    constructor: (@id, @account, transaction, names) ->
       super document.createElement "li"
 
       date = new Date(transaction.accountingDate.datetime)
       date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-
 
       @addClass "list-group-item clearfix"
       @html "
@@ -20,6 +19,8 @@ define [
           <div class='form-group'>
             <div class='input-group'>
               <div class='input-group-addon'><span class='glyphicon glyphicon-user'></span></div>
+              <input type='hidden' name='van' value=0>
+              <input type='hidden' name='naar' value='#{@id}'>
               <input type='hidden' name='bedrag' value='#{transaction.amount.value}'>
               <input type='hidden' name='naariban' value='#{@account}'>
               <select name='vaniban' class='form-control'>
@@ -29,7 +30,7 @@ define [
             </div>
             <div class='input-group'>
               <div class='input-group-addon'><span class='glyphicon glyphicon-info-sign'></span></div>
-              <input type='text' class='form-control' placeholder='Add note'>
+              <input type='text' class='form-control' placeholder='Add note' name='notitie'>
             </div>
           </div>
           <button type='submit' class='btn btn-primary'>Request</button>
@@ -37,8 +38,13 @@ define [
       </div>"
 
       for name in names
-        @find("select").append("<option value='#{name[1]}'>#{name[0]}</option>")
+        @find("select").append("<option id='#{name[2]}' value='#{name[1]}'>#{name[0]}</option>")
 
+      fromInput = @find('[name="van"]')
+      @find("select").on "change", =>
+        @find "select option:selected"
+        .each ->
+          fromInput.val($(@).attr("id"))
       @prepend "<div class='panel panel-default'>€ #{parseFloat(transaction.amount.value).toFixed(2)}</div>"
 
       @actionGroup = new ActionGroup
@@ -49,6 +55,6 @@ define [
       .submit (e) ->
         e.preventDefault()
         if confirm "Are you sure?"
-          $.ajax "/users/request/create",
+          $.ajax "/users/requests/create",
             data: $(@).serializeArray()
           .done (data) ->
