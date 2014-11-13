@@ -39,7 +39,7 @@ define [
       </div>"
 
       for name in names
-        @find("select").append("<option id='#{name[2]}' value='#{name[1]}'>#{name[0].split(',').reverse().join(' ')}</option>")
+        @find("select").append("<option id='#{name.id}' value='#{name.id}'>#{name.name.split(',').reverse().join(' ')}</option>")
 
       fromInput = @find('[name="van"]')
       nameInput = @find('[name="naam"]')

@@ -35,7 +35,7 @@ router.post('/delete', function (req, res) {
 router.post('/all', function (req, res){
   checkLogin(req, res, KIND, function() {
     var id = req.cookies['user'];
-    connection.query('SELECT * FROM `verzoeken` WHERE ?', {'naar': id}, function(err, result){
+    connection.query('SELECT * FROM `verzoeken` WHERE ? OR ?', [{'naar': id}, {'van': id}], function(err, result){
       res.send(JSON.stringify({'requests': result}));
       res.end();
     });

@@ -68,7 +68,7 @@ define [
         container.append new Title('My Requests')
         container.append new RequestList @
         container.append new Title('Transactions of ' + name)
-        container.append new TransactionList id, name
+        container.append new TransactionList id, name, @visual.others
         @visual.append container
 
       if @state == "main"

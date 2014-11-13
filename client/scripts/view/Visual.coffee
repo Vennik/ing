@@ -31,14 +31,14 @@ define [
       @circles = []
 
       own = data.self
-      others = data.others
+      @others = data.others
 
 
       circle = new MyCircle own.name.split(",").reverse().join(" "), own.id, own.level, @view
       @circles.push circle
       @append circle
 
-      for other in others
+      for other in @others
         circle = new Circle other.name.split(",").reverse().join(" "), other.id, other.level, @view
         @circles.push circle
         @append circle
