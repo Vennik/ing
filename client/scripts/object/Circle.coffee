@@ -16,12 +16,13 @@ define [
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
       @click () =>
-        $.ajax "/users/transactions",
-          dataType: "json"
-          type: "POST"
+        @view.visual.addClass "loading"
+        $.ajax "/users/transactions"
         .done (data) =>
           console.log(data.list)
           @view.toggleTransactions(data.list)
+        .always () =>
+          @view.visual.removeClass "loading"
 
     setLeft: (index) ->
       @css

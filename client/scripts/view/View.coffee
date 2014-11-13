@@ -30,17 +30,12 @@ define [
           type: "POST"
           dataType: "json"
 
-        vis = @visual
+        @visual.addClass "loading"
         $.ajax "/users/banks/all"
-          .done (data) ->
-            vis.update(data)
-            console.log data.self
-            # download all transactions for the user
-#            $.ajax "/users/transactions"
-#              .done (data) ->
-#                console.log data.self
-#                vis.updateTransactions JSON.parse data.self
-
+          .done (data) =>
+            @visual.update(data)
+          .always () =>
+            @visual.removeClass "loading"
 
       if @state == "login"
         @html ''
