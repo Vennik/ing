@@ -26,13 +26,15 @@ body, html {
   position: relative;
 }
 
-#login{
+#login,
+#accept-transaction {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: #fff;
+  z-index: 300;
 }
 
 #visual {
@@ -42,6 +44,9 @@ body, html {
   right: 300px;
   overflow: auto;
   padding: 20px;
+  &.tranaction-pending {
+    overflow: hidden;
+  }
   &.loading {
     &:before {
       content: '';
@@ -110,7 +115,7 @@ body, html {
       float: right;
       margin-top: 4px;
     }
-    .panel{
+    .panel {
       float: right;
       margin: 4px 15px 0 0;
       height: 34px;

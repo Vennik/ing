@@ -51,6 +51,10 @@ define [
         .find ".listcontainer"
         .remove()
 
+        @visual
+        .find "#accept-transaction"
+        .remove()
+
 
     toggleTransactions: (data) ->
       if @state == "account"
@@ -61,7 +65,7 @@ define [
         container = new Div
         container.addClass "listcontainer"
         container.append new Title('Requests')
-        container.append new RequestList
+        container.append new RequestList @
         container.append new Title('Transactions')
         container.append new TransactionList data
         @visual.append container
