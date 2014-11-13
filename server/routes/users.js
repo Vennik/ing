@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 var querystring = require('querystring');
+var _ = require('underscore');
 var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
 
 var connection = require('../control/mysql');
@@ -10,7 +11,7 @@ var apiCall = function (location, query, token, cb) {
   var options = {
     host: 'ingcommonapi-test.apigee.net',
     port: 80,
-    path: '/commonapi/v0/nl' + location + "?" + querystring.stringify(query),
+    path: '/commonapi/v0/nl' + location + "?" + querystring.stringify(_.extend({'apikey':consumerKey},query)),
     method: 'GET',
     headers: {'Authorization': token}
   };
@@ -30,18 +31,6 @@ var apiCall = function (location, query, token, cb) {
 connection.connect(function (err) {
   // connected! (unless `err` is set)
   console.log(err);
-});
-
-/* GET users listing. */
-router.get('/', function (req, res) {
-  res.send('respond with a resource');
-});
-
-router.get('/usr', function (req, res) {
-  var query = connection.query('SELECT * FROM tokens', function (err, result) {
-    console.log(err);
-    console.log(result);
-  });
 });
 
 /**
@@ -82,7 +71,7 @@ var eigenBanken = function (req, rest) {
 };
 
 var elkeBank = function (id, token, cb) {
-  apiCall('/persons/' + id + '/products', {'apikey': consumerKey}, token, cb);
+  apiCall('/persons/' + id + '/products', {}, token, cb);
 };
 
 router.post('/products/all', function (req, rest) {
@@ -129,14 +118,10 @@ var addFulls = function (others, response, rest) {
 router.post('/transactions', function (req, rest) {
   var id = req.param('userId');
   //var tok = req.cookies['token'];
-  var bank = req.param('bankId');
-
-  console.log(id);
-
-  console.log(bank);
+  var iban = req.param('iban');
 
   token(id, function (tok) {
-    apiCall('/persons/' + id + '/transactions', {'apikey': consumerKey, 'customerProductId': bank}, tok, function (data) {
+    apiCall('/persons/' + id + '/transactions', {'customerProductId': iban}, tok, function (data) {
       rest.send(data);
     });
   });
@@ -165,7 +150,7 @@ router.post('/products/:id', function (req, res) {
 
   var iban = req.param('id');
 
-  apiCall('/products/' + iban, {'apikey': consumerKey}, token, function(data) {
+  apiCall('/products/' + iban, {}, token, function(data) {
     res.send(data);
   });
 });
@@ -180,14 +165,6 @@ router.post('/login', function (req, res) {
       res.send(JSON.stringify({'status': 'nok'}));
     }
   });
-});
-
-router.get('/newToken', function (req, res) {
-  var uid = req.data
-});
-
-router.get('/create/:id', function (req, res) {
-  console.log(req.param('id'));
 });
 
 router.post('/create/:id', function (req, res) {

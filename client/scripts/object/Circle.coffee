@@ -31,7 +31,7 @@ define [
         $.ajax "/users/transactions",
           data:
             'userId': @id
-            'bankId': @account
+            'iban': @account
         .done (data) =>
           @view.toggleTransactions(data.list)
         .always () =>
