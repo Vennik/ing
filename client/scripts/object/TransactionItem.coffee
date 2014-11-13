@@ -21,7 +21,7 @@ define [
               <div class='input-group-addon'><span class='glyphicon glyphicon-user'></span></div>
               <input type='hidden' name='van' value=0>
               <input type='hidden' name='naar' value='#{@id}'>
-              <input type='hidden' name='bedrag' value='#{transaction.amount.value}'>
+              <input type='hidden' name='bedrag' value='#{transaction.amount.value*100}'>
               <input type='hidden' name='naariban' value='#{@account}'>
               <select name='vaniban' class='form-control'>
 

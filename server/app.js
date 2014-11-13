@@ -7,6 +7,7 @@ var _ = require('underscore');
 
 var users = require('./routes/users');
 var requests = require('./routes/requests');
+var products = require('./routes/products');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/authorize', function(req, res) {
 
 app.use('/users', users);
 app.use('/users/requests', requests);
+app.use('/users/products', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
