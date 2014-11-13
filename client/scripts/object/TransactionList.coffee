@@ -6,44 +6,23 @@ define [
     constructor: (@data) ->
       super document.createElement "ul"
 
-      vis = @visual
-      $.ajax "/users/banks/allOpen",
-        dataType: "json"
-        type: "POST"
-        data: {'userId': $.cookie("user"), 'token' : $.cookie("token")}
-      .done (data) ->
-        console.log(data)
-        banks = JSON.parse(data.fullAccess[0].banks)
-        length = banks.list.length
-        name = new Array()
-        i = 0
-        for account in banks.list
-          name[i] = account.customerDescription
-          i++
-        console.log(name)
-
-
-
 
       @attr "id", "transaction-list"
       @addClass "list-group"
-
+      names = new Array()
       vis = @visual
-      $.ajax "/users/banks/allOpen",
-        dataType: "json"
-        type: "POST"
-        data: {'userId': $.cookie("user"), 'token' : $.cookie("token")}
-      .done (data) ->
-        console.log(data)
-        banks = JSON.parse(data.fullAccess[0].banks)
-        length = banks.list.length
-        name = new Array()
-        i = 0
-        for account in banks.list
-          name[i] = account.customerDescription
-          i++
+      $.ajax "/users/banks/allOpen"
+      .done (data) =>
+        if data.fullAccess[0]
+          banks = JSON.parse(data.fullAccess[0].banks)
+          length = banks.list.length
 
-      for transaction in @data
-        date = new Date(transaction.accountingDate.datetime)
-        date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-        @append new TransactionItem transaction.description ?= "", transaction.counterpartProductId, date, transaction.amount.value
+          i = 0
+          for account in banks.list
+            names[i] = account.customerDescription
+            i++
+
+        for transaction in @data
+          date = new Date(transaction.accountingDate.datetime)
+          date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
+          @append new TransactionItem transaction.description ?= "", transaction.counterpartProductId, date, transaction.amount.value, names

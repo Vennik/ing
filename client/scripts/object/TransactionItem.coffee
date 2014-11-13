@@ -17,18 +17,16 @@ define [
             <div class='input-group'>
               <div class='input-group-addon'><span class='glyphicon glyphicon-user'></span></div>
               <select class='form-control'>
+
                 <option>Select name</option>
-                <option>Name 1</option>
-                <option>Name 2</option>
-                <option>Name 3</option>
-                <option>Name 4</option>
-              <select>
+               <select>
             </div>
           </div>
           <button type='submit' class='btn btn-primary'>Request</button>
         </form>
       </div>"
-
+      for name in names
+        @find("select").append("<option>#{name}</option>")
       @prepend "<div class='panel panel-default'>€ #{amount}</div>"
 
 

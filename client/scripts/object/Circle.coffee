@@ -20,7 +20,6 @@ define [
           data:
             'bankId': @account
         .done (data) =>
-          console.log(data.list)
           @view.toggleTransactions(data.list)
         .always () =>
           @view.visual.removeClass "loading"
