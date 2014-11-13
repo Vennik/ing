@@ -5,6 +5,26 @@ define [
   class TransactionList extends Element
     constructor: (@data) ->
       super document.createElement "ul"
+
+      vis = @visual
+      $.ajax "/users/banks/allOpen",
+        dataType: "json"
+        type: "POST"
+        data: {'userId': $.cookie("user"), 'token' : $.cookie("token")}
+      .done (data) ->
+        console.log(data)
+        banks = JSON.parse(data.fullAccess[0].banks)
+        length = banks.list.length
+        name = new Array()
+        i = 0
+        for account in banks.list
+          name[i] = account.customerDescription
+          i++
+        console.log(name)
+
+
+
+
       @attr "id", "transaction-list"
       @addClass "list-group"
 
