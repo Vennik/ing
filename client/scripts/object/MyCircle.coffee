@@ -6,15 +6,8 @@ define [
       super(arguments...)
       @addClass 'me'
 
-      @click () =>
+      @off 'click'
+      @on 'click', () =>
         @parent().find("> .active").removeClass "active"
         @addClass "active"
-        @view.visual.addClass "loading"
-        $.ajax "/users/transactions",
-          data:
-            'userId': @id
-            'iban': @account
-        .done (data) =>
-          @view.toggleTransactions(@id, @account, data.list)
-        .always () =>
-          @view.visual.removeClass "loading"
+        @view.toggleTransactions @id, @account
