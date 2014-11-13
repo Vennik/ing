@@ -17,10 +17,8 @@ define [
           products = JSON.parse(data.fullAccess[0].products)
           length = products.list.length
 
-          i = 0
           for account in products.list
-            names[i] = account.customerDescription
-            i++
+            names[_i] = account.customerDescription
 
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
