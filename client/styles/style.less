@@ -60,7 +60,7 @@ body, html {
     width: 200px;
     height: 200px;
     margin: 20px;
-    padding: 20px;
+    padding: 0 10px;
     border-radius: 50%;
     cursor: pointer;
     text-align: center;
@@ -70,14 +70,14 @@ body, html {
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    display: table;
     .transition(top .2s;);
     .name {
       font: 25px/30px 'Bree Serif', 'Arial';
-      display: block;
-      padding: 50px 0 0;
+      display: table-cell;
+      vertical-align: middle;
     }
     .account {
-      display: block;
       font: 16px/30px 'Bree Serif', 'Arial';
     }
     &.small {
@@ -86,8 +86,8 @@ body, html {
       left: 0;
       position: absolute;
       .name {
-        padding-top: 10px;
         font-size: 18px;
+        line-height: 25px;
       }
       .account {
         display: none;
