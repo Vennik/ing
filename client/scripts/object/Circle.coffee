@@ -8,6 +8,9 @@ define [
       super()
 
       @addClass "circle"
+      if account[0] == 'T'
+        @addClass "blue"
+
       @append new Element "<span class='name'>#{@name}<br /><span class='account'>#{@account}</span></span>"
 
       @balance = parseFloat(@balance).toFixed(2);
@@ -19,6 +22,7 @@ define [
 
       path = window.location.pathname;
       url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
+
 
       @click () =>
         @parent().find("> .active").removeClass "active"
