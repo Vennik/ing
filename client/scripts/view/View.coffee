@@ -65,7 +65,7 @@ define [
 
         container = new Div
         container.addClass "listcontainer"
-        container.append new Title('Requests')
+        container.append new Title('My Requests')
         container.append new RequestList @
         container.append new Title('Transactions of ' + name)
         container.append new TransactionList id, name
