@@ -6,7 +6,7 @@ var checkLogin = require('../control/checklogin');
 var connection = require('../control/mysql');
 
 router.post('/create', function (req, res) {
-  checkLogin(req, function() {
+  checkLogin(req, res, function() {
     var van = req.param('van');
     var naar = req.param('naar');
     var vaniban = req.param('vaniban');
