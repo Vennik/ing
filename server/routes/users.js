@@ -1,32 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var http = require('http');
-var querystring = require('querystring');
-var _ = require('underscore');
-var consumerKey = 'tVYp2gl4HTp9Ne7spJgatAlG2K8GGfRq';
+
+var apiCall = require('../control/apicall');
+var checkLogin = require('../control/checklogin');
 
 var connection = require('../control/mysql');
-
-var apiCall = function (location, query, token, cb) {
-  var options = {
-    host: 'ingcommonapi-test.apigee.net',
-    port: 80,
-    path: '/commonapi/v0/nl' + location + "?" + querystring.stringify(_.extend({'apikey':consumerKey},query)),
-    method: 'GET',
-    headers: {'Authorization': token}
-  };
-
-  http.request(options, function (res) {
-    var data = '';
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      data += chunk;
-    });
-    res.on('end', function () {
-      cb(data);
-    });
-  }).end();
-};
 
 connection.connect(function (err) {
   // connected! (unless `err` is set)
@@ -126,24 +104,6 @@ router.post('/transactions', function (req, rest) {
     });
   });
 });
-
-router.post('/transaction/request', function (req, rest) {
-  var van = req.param('van');
-  console.log(van);
-  var naar = req.param('naar');
-  var vaniban = req.param('vaniban');
-  var naariban = req.param('naariban');
-  var bedrag = req.param('bedrag');
-  var note = req.param('notitie');
-  var sql = connection.query('INSERT INTO `verzoeken` (van, naar, vanIban, naarIban, bedrag, notitie) VALUES (?,?,?,?,?,?);', [van, naar, vaniban, naariban, bedrag, note], function (err, others) {
-    connection.query('SELECT max(tid) AS "max" FROM `verzoeken`', function (err, others) {
-      console.log(others);
-      rest.send(JSON.stringify({'tid': others[0].max}));
-      console.log(err);
-    })
-  });
-});
-
 router.post('/products/:id', function (req, res) {
   var token = req.cookies['token'];
   var user = req.cookies['user'];
@@ -166,7 +126,6 @@ router.post('/login', function (req, res) {
     }
   });
 });
-
 
 var login = function (token, rest) {
   console.log(token);

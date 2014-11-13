@@ -3,8 +3,10 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var _ = require('underscore');
 
 var users = require('./routes/users');
+var requests = require('./routes/requests');
 
 var app = express();
 
@@ -19,8 +21,10 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/authorize', function(req, res) {
     res.send("OK");
     res.end(200);
-})
+});
+
 app.use('/users', users);
+app.use('/users/requests', requests);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
