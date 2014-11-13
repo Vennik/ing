@@ -3,7 +3,7 @@ define [
   'object/TransactionItem'
 ], (Element, TransactionItem) ->
   class TransactionList extends Element
-    constructor: (@data) ->
+    constructor: (@account, @data) ->
       super document.createElement "ul"
 
 
@@ -13,10 +13,10 @@ define [
       vis = @visual
       $.ajax "/users/products/allOpen"
       .done (data) =>
+        console.log data
         if data.fullAccess[0]
           products = JSON.parse(data.fullAccess[0].products)
           length = products.list.length
-          console.log(products)
           for account in products.list
             if (account.id)[0] != 'T'
               names.push([account.customerDescription, account.id])
@@ -24,4 +24,4 @@ define [
         for transaction in @data
           date = new Date(transaction.accountingDate.datetime)
           date = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear()
-          @append new TransactionItem transaction, names
+          @append new TransactionItem @account, transaction, names

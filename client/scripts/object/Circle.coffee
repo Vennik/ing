@@ -33,7 +33,7 @@ define [
             'userId': @id
             'iban': @account
         .done (data) =>
-          @view.toggleTransactions(data.list)
+          @view.toggleTransactions(@account, data.list)
         .always () =>
           @view.visual.removeClass "loading"
 
