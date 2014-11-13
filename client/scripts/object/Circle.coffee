@@ -4,12 +4,21 @@ define [
   'view/View'
 ], (A, Element, View) ->
   class Circle extends A
-    constructor: (@name, @id, @account, @view) ->
+    constructor: (@name, @id, @account, @balance, @view) ->
       super()
 
       @addClass "circle"
-
       @append new Element "<span class='name'>#{@name}<br /><span class='account'>#{@account}</span></span>"
+
+      @balance = parseFloat(@balance).toFixed(2);
+
+      @attr "title", "€ " + @balance
+      @attr "data-toggle", "tooltip"
+      @attr "data-placement", "bottom"
+      #@tooltip()
+
+      path = window.location.pathname;
+      url = window.location.origin + path.substring(0, path.lastIndexOf('/'));
 
       @click () =>
         @parent().find("> .active").removeClass "active"

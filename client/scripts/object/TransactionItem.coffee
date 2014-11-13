@@ -31,8 +31,8 @@ define [
       </div>"
       for name in names
         @find("select").append("<option>#{name}</option>")
-      @prepend "<div class='panel panel-default'>#{transaction.currency.code} #{transaction.amount.value}</div>"
 
+      @prepend "<div class='panel panel-default'>#{transaction.currency.code} #{parseFloat(transaction.amount.value).toFixed(2)}</div>"
 
       @actionGroup = new ActionGroup
       @actionGroup.append new RequestButton transaction.amount.value

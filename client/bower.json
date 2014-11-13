@@ -4,7 +4,6 @@
     "dependencies": {
         "jquery": "~2.1.1",
         "requirejs": "~2.1.5",
-        "jquery-hammerjs": "~2.0.0",
         "bootstrap": "~3.2.0",
         "jquery.cookie": "~1.4.0"
     }

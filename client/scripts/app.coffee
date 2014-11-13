@@ -3,8 +3,7 @@ require.config
   paths:
     "lib": "../../lib"
     "jquery": "../../lib/jquery/dist/jquery.min"
-    "hammerjs": "../../lib/hammerjs/hammer.min"
-    "jquery-hammerjs": "../../lib/jquery-hammerjs/jquery.hammer"
+    "bootstrap": "../../lib/bootstrap/dist/js/bootstrap.min"
     "jquery.cookie": "../../lib/jquery.cookie/jquery.cookie"
 
-require ['main', 'object/Element', 'jquery-hammerjs', 'jquery.cookie']
+require ['main', 'object/Element', 'jquery', 'bootstrap', 'jquery.cookie']

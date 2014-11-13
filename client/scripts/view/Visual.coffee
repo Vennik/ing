@@ -10,10 +10,6 @@ define [
 
       @circles = []
 
-      @hammer
-          preventDefault: true
-      .on "pan", (e) =>
-
     circlesToLeft: ->
       for circle in @circles
         do (circle) ->
@@ -40,16 +36,14 @@ define [
       own = JSON.parse data.self
       other = data.fullAccess
 
-      console.log other
-
       for item in own.list
-        circle = new Circle item.customerDescription.split(",").reverse().join(" "), $.cookie('user'), item.iban, @view
+        circle = new Circle item.customerDescription.split(",").reverse().join(" "), $.cookie('user'), item.iban, item.availableBalance.value, @view
         @circles.push circle
         @append circle
 
       for item in other
         accounts = JSON.parse item.products
         for account in accounts.list
-          circle = new Circle account.customerDescription.split(",").reverse().join(" "), item.person, account.iban, @view
+          circle = new Circle account.customerDescription.split(",").reverse().join(" "), item.person, account.iban, account.availableBalance.value, @view
           @circles.push circle
           @append circle
